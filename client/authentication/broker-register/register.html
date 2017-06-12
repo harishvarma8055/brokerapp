@@ -1,0 +1,52 @@
+
+<nav class="navbar navbar-default">
+  <div>
+    <div class="navbar-header">
+      <span class="navbar-brand">Broker Setup</span>
+    </div>
+  </div>
+</nav>
+<div>
+<form class="form-horizontal">
+  <legend>Broker Setup</legend>
+  <fieldset>
+    <div class="form-group">
+      <label for="brokerDisplayName" class="col-lg-2 control-label">Broker Display Name</label>
+      <div class="col-lg-10">
+        <input class="form-control" ng-model="$ctrl.brokerDisplayName" placeholder="Enter Display  name" type="text">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="brokerUserName" class="col-lg-2 control-label">Logo Image</label>
+      <input style= "margin-left:17em" type="file" ngf-select ng-model="$ctrl.picFile" name="file" required>
+    </div>
+   <div class="form-group">
+      <label for="selectTheme" class="col-lg-2 control-label">Select Theme</label>
+      <div class="col-lg-10">
+         <select class="form-control" id="select" ng-change="$ctrl.updateTheme($ctrl.themeNames)" ng-model="$ctrl.themeNames">
+          <option>Create New Theme</option>
+          <option>Cerulean</option>
+          <option>Flatly</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group" ng-show='$ctrl.themeNames == "Create New Theme"'>
+      <label for="themeName" class="col-lg-2 control-label">ThemeName</label>
+      <div class="col-lg-10">
+        <input class="form-control" ng-model="$ctrl.themeName" placeholder="Enter theme name" type="email">
+      </div>
+    </div>
+    <div class="form-group" ng-show='$ctrl.themeNames == "Create New Theme"'>
+      <label for="uploadTheme" class="col-lg-2 control-label">Upload Theme</label>
+      <input style= "margin-left:17em" type="file" ngf-select ng-model="$ctrl.themeFile" name="file">
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="Submit" class="btn btn-primary" ng-click="$ctrl.submit()">Submit</button>
+      </div>
+    </div>
+
+  </fieldset>
+</form>
+</div>
+

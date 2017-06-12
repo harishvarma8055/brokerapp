@@ -1,0 +1,652 @@
+
+<nav id="onboard" class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <span class="navbar-brand">{{$ctrl.navHeader}}</span>
+       <!--  <span class="navbar-brand">{{$root.globalBrokerType}}</span> -->
+       <span class="navbar-brand">{{$root.userType}}</span>
+      </div>
+      <div class="collapse navbar-collapse" collapse="false">
+        <ul class="nav navbar-nav navbar-right">
+          <!-- <span class="navbar-brand">{{$root.userType}}</span> -->
+          <li class="dropdown">
+          <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          <!-- <ul class="dropdown-menu">
+             <li><a href="" ng-click="$ctrl.changeState('dashboard')">Dashboard</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newloan')">Create New Loan</a></li>
+            <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          </ul> -->
+         </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="row bs-wizard" style="border-bottom:0;" ng-cloak> 
+                  <div class="col-xs-2 bs-wizard-step {{step1Status}}">
+                    <div class="text-center bs-wizard-stepnum">Step 1</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center">Customer Details</div>
+                  </div>
+                  
+                  <div class="col-xs-2 bs-wizard-step {{step2Status}}"><!-- complete -->
+                    <div class="text-center bs-wizard-stepnum">Step 2</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center">Policy Details</div>
+                  </div>
+                  
+                  <div class="col-xs-2 bs-wizard-step {{step3Status}}"><!-- complete -->
+                    <div class="text-center bs-wizard-stepnum">Step 3</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center">Bank Details</div>
+                  </div>
+
+                  <div class="col-xs-2 bs-wizard-step {{step4Status}}"><!-- complete -->
+                    <div class="text-center bs-wizard-stepnum">Step 4</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center">Documentation</div>
+                  </div>
+
+                  <div class="col-xs-2 bs-wizard-step {{step5Status}}"><!-- complete -->
+                    <div class="text-center bs-wizard-stepnum">Step 5</div>
+                    <div class="progress"><div class="progress-bar"></div></div>
+                    <a href="#" class="bs-wizard-dot"></a>
+                    <div class="bs-wizard-info text-center">Agreement Confirmation</div>
+                  </div>
+                  
+  </div> 
+  <div class="container-fluid">
+  <form name="customerForm" class="form-horizontal" ng-show="$ctrl.isClientDetails" novalidate>
+    <legend>Enter Customer Details</legend>
+    <fieldset>
+     <div class="form-group">
+        <label for="customerName" class="col-lg-2 control-label">Name</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.customerName" placeholder="Enter customer name" type="text" required focus value = "{{customerName}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="postCode" class="col-lg-2 control-label">Post Code</label>
+        <div class="col-lg-4">
+          <input class="form-control" ng-model="$ctrl.newClient.postCode" placeholder="Enter post code" type="text" value = "{{postCode}}">
+        </div>
+        <div class="col-lg-2">
+          <button type="next" class="btn btn-primary" ng-click="$ctrl.findAddress()">Find Address</button>      
+       </div>
+      </div>
+      <div class="form-group">
+        <label for="selectAddress" class="col-lg-2 control-label">Select Address</label>
+        <div class="col-lg-10">
+          <select class="form-control" id="select" ng-model="$ctrl.newClient.customerAddress" ng-change="$ctrl.populateAddressFields()">
+            <option ng-repeat="address in addresses"
+            value="{{address}}" >{{address}}</option>
+          </select>
+        </div>
+      </div> 
+      <div class="form-group ng-hide">
+        <label for="textArea" class="col-lg-2 control-label">Address</label>
+        <div class="col-lg-10">
+          <textarea ng-model="$ctrl.newClient.customerAddress" class="form-control" rows="3" required focus></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address1" class="col-lg-2 control-label">Address 1</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.address1" placeholder="Enter Address 1" type="text" required focus value = "{{addressLine1}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address2" class="col-lg-2 control-label">Address 2</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.address2" placeholder="Enter Address 2" type="text" required focus value = "{{addressLine2}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address3" class="col-lg-2 control-label">Address 3</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.address3" placeholder="Enter Address 3" type="text" required focus value = "{{addressLine3}}">
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="address4" class="col-lg-2 control-label">Address 4</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.address4" placeholder="Enter Address 4" type="text" required focus value = "{{addressLine4}}">
+        </div>
+      </div>
+       
+      <div class="form-group">
+        <label for="inputEmail" class="col-lg-2 control-label">Business Email Address</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.customerEmail" placeholder="Enter customer email" type="email" required focus value = "{{emailId}}">
+        </div>
+      </div>
+      
+
+     <!--  <div class="form-group">
+        <label for="premiumRate" class="col-lg-2 control-label">Premium rate £</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.premiumRate" placeholder="Enter Premium Rate" type="text" required focus>
+        </div>
+      </div> -->
+
+      <div class="form-group">
+        <label for="CustomerType" class="col-lg-2 control-label">TraderType</label>
+        <div class="col-lg-10">
+          <select class="form-control" id="select" ng-model="$ctrl.newClient.customerType" ng-options="traderTypeObj.description for traderTypeObj in traderTypes track by traderTypeObj.type">
+            </select>
+        </div>
+      </div>    
+      <div class="form-group" ng-show="$ctrl.newClient.customerType.description == 'Private Individual'">
+        <label for="dob" class="col-lg-2 control-label">Date of Birth</label>
+       <div class="col-lg-10">
+     <input  class="form-control" type="datetime" date-time auto-close="true" view="date" min-view="date" maxlength="10" format="dd/MM/yyyy" ng-model="$ctrl.newClient.dateOfBirth" placeholder="Date Of Birth" value = "{{dateOfBirth}}">
+       </div>
+      </div>
+      <div class="form-group">
+        <label for="customerMobile" class="col-lg-2 control-label">Mobile Phone Number</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.customerMobile" placeholder="Enter customer mobile number" type="text" required focus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputBusinessContactEmail" class="col-lg-2 control-label">Office Phone Number</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.customerHomeTel" placeholder="Enter office phone number of the customer" type="TEXT" required focus value = "{{telephone}}">
+        </div>
+      </div>
+
+      <div class="form-group" ng-show="$ctrl.newClient.customerType.description == 'Limited Company'">
+        <label for="inputCompanyRegistrationNumber" class="col-lg-2 control-label">Company Regn No</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.companyRegNo" placeholder="Enter company registration number" type="text" required focus>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="NatureOfBusiness" class="col-lg-2 control-label">Nature of business</label>
+        <div class="col-lg-10">
+          <select class="form-control" id="select" ng-model="$ctrl.newClient.natureOfBusiness" ng-options="businessType.description for businessType in businessTypes track by businessType.type" required focus value = "{{natureOfBusiness}}">
+            
+          </select>
+        </div> 
+    </div>   
+      <div class="form-group">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="reset" class="btn btn-default btn-back">Reset</button>
+          <button type="next" class="btn btn-primary" ng-click="$ctrl.next()">Next</button>
+        </div>
+      </div>
+      </fieldset>
+  </form>
+
+ <form name="policyForm" class="form-horizontal" ng-show="$ctrl.isPremiumDetails">
+ <div class="row">
+  <div class="col-lg-1">
+ </div> 
+  <div class="col-lg-10">
+  <div class="panel-group" id="accordionPolicyDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" ng-click="$ctrl.isPolicyEnterDetails = !$ctrl.isPolicyEnterDetails">
+          Enter Policy Details
+        </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" ng-show="$ctrl.isPolicyEnterDetails">
+      <div class="panel-body">
+              <div class="jumbotron">
+        <form name="quickQuoteForm" class="form-horizontal">
+    
+    <fieldset>
+    <div class="form-group">
+        <label for="policyNumber" class="col-lg-2 control-label">Policy Number</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.policyNumberInput" placeholder="Enter Policy Number" type="text" ng-required=true focus>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="insurerName" class="col-lg-2 control-label">Insurer Name</label>
+        <div class="col-lg-4">
+          <select class="form-control" ng-model="$ctrl.newClient.insurerInput" id="select" required focus>
+            <option>Ace European Group Limited</option>
+          </select>
+        </div>
+         <label for="inputPremiumValue" class="col-lg-2 control-label">Policy Premium Amount</label>
+        <div class="col-lg-4">
+          <input class="form-control" ng-model="$ctrl.newClient.premiumValue" placeholder="Enter Premium Amount" ng-change="$ctrl.updateAmountPayable()" type="number" required focus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="coverType" class="col-lg-2 control-label">Cover Type</label>
+        <div class="col-lg-4">
+          <select class="form-control" ng-model="$ctrl.newClient.coverInput" id="select" required focus>
+            <option>Building Industry</option>
+          </select>
+        </div>
+        <label for="policyPremiumDate" class="col-lg-2 control-label">Policy Start Date</label>
+       <div class="col-lg-4">
+     <input  class="form-control" type="datetime" date-time auto-close="true" view="date" min-view="date" maxlength="10" format="dd/MM/yyyy" ng-model="$ctrl.newClient.policyPremiumDateInput" placeholder="Policy Premium Date">
+       </div>
+      </div>
+      <div class="form-group">
+          <label for="policyPremiumDate" class="col-lg-2 control-label">Policy Renewal Date</label>
+           <div class="col-lg-4">
+           <input  class="form-control" type="datetime" date-time auto-close="true" view="date" min-view="date" maxlength="10" format="dd/MM/yyyy" ng-model="$ctrl.newClient.policyPremiumDateInput" placeholder="Policy Renewal Date">
+           </div>
+               <div ng-click="$ctrl.divClicked = !$ctrl.divClicked" class="col-lg-1 col-lg-offset-1 pull-left text-right"> 
+          <div class="check-rect" style="cursor: pointer;">
+                    <img ng-show="$ctrl.divClicked" class="img" src="/images/checkBoxTick.png" tabindex="0"> 
+           </div>
+          </div>
+           <label for="policyIsRenewal" class="col-lg-2 control-label">Policy is a renewal
+           </label>
+            
+           
+       </div>  
+        <div class="form-group">
+          <!-- <input type="checkbox" class="newCheckBox" ng-model="$ctrl.newClient.isRenewable"><label for="policyPremiumDate" class="control-label"> Policy is a renewal</label> -->
+          <label for="isRefundable" class="col-lg-2 control-label">Refundable</label>
+            <div class="col-lg-4">
+              <select class="form-control" ng-model="$ctrl.newClient.coverInput" id="select" required focus>
+                <option>Non Refundable</option>
+                <option>Refundable</option>
+              </select>
+            </div>
+           
+       </div>   
+      
+     
+     <!--  <div class="form-group">
+        <label for="rateOptions" class="col-lg-2 control-label">Rate Options</label>
+        <div class="col-lg-10">
+          <select class="form-control" ng-model="$ctrl.newClient.financeRate" ng-change="$ctrl.updateAmountPayable()" id="select" disabled required focus>
+            <option value="3.1">10 months with interest rate of 3.1%</option>
+            <option value="4.1">6  months with interest rate of 4.1%</option>
+            <option value="5.1">3  months with interest rate of 5.1%</option>
+          </select>
+        </div>
+      </div> 
+      <div class="form-group">
+        <label for="inputBrokerPhone" class="col-lg-2 control-label">Total Amount Payable</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.totalAmountPayable" placeholder="Enter total amount payable" type="text">
+        </div>
+      </div> -->
+     <!--   <div class="form-group">
+        <label for="inputBrokerPhone" class="col-lg-2 control-label">Broker Phone</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.brokerPhone" placeholder="Enter broker Phone number" type="number" required focus>
+        </div>
+      </div> --> 
+      <div class="form-group">
+        <button type="add" class="btn btn-primary btn-md" ng-click="$ctrl.addPolicyToTable()" style="float: right;">Add</button>
+      </div>  
+      <div class="form-group">
+      
+      <div ui-grid="policyGridOptions" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize></div>
+      </div>
+
+      <div class="form-group" style="float: right;">
+      <label for="totalPremiumValue" class="col-lg-6 control-label">Total Premium Amount</label>
+        <div class="col-lg-6">
+          <input class="form-control" ng-model="$ctrl.newClient.totalPremium" type="number" focus style="float: right;" readonly>
+        </div> 
+      </div> 
+   </fieldset>
+                   </form>
+               </div>
+                  </div>
+            </div>
+          </div>
+          </div>
+      </div>
+  <div class="col-lg-1">
+    </div>
+</div>
+
+
+ </form>    
+
+<!-- Quote Calculation Section Below -->
+<div class="row" ng-show="$ctrl.QuoteVisibility">
+ <div class="col-lg-1">
+ </div> 
+  <div class="col-lg-10">
+  <div class="panel-group" id="accordionQuoteDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" ng-click="$ctrl.isQuoteCalculator = !$ctrl.isQuoteCalculator">
+          Policy Calculator
+        </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" ng-show="$ctrl.isQuoteCalculator">
+      <div class="panel-body">
+              <div class="jumbotron">
+                  <form name="quickQuoteForm" class="form-horizontal">
+                          <div class="row">
+                                    <div class="col-lg-8">
+                                       <strong>Cost of premium (amount of credit)</strong>
+                                    </div>   
+                          </div>
+                          <div class="row">
+                                      <div class="col-lg-1">
+                                        <h2>&pound;<h2>
+                                      </div>
+                                      <div class="col-lg-5">
+                                       <input type="number" class="form-control input-lg" ng-model="$ctrl.quote.totalPremium"></input>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <button type="submit" class="btn btn-default">Apply Custom Rate</button>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <button type="submit" class="btn btn-default">Override Rate</button>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <button type="submit" class="btn btn-primary" ng-click="$ctrl.calculatePremium()">Calculate</button>
+                                      </div>
+                          </div>
+                          <div class="row"><br><div>
+                          <div class="row">
+                                      <div class="col-lg-2">
+                                      </div>
+                                      <div class="col-lg-2 text-center">
+                                        <strong>Interest Rate </strong>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <strong>Monthly </strong>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <strong>Total </strong>
+                                      </div>
+                                      <div class="col-lg-1">
+                                             Equivalent 
+                                      </div>
+                          </div>
+                          <div class="row">
+                                      <div class="col-lg-2">
+                                         <strong>Term</strong>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <strong>Net %</strong>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <strong>Gross %</strong>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <strong>payment amount (&pound;)</strong>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <strong>interest payable (&pound;)</strong>
+                                      </div>
+                                      <div class="col-lg-2">
+                                        <strong>APR (%)</strong>
+                                      </div>
+                          </div>
+                          <div class="row">
+                                      <div class="col-lg-2" ng-class="{'white-bg': !$ctrl.is6MonthsSelected,'grey-bg': $ctrl.is6MonthsSelected}">
+                                         6 Months
+                                      </div>
+                                      <div class="col-lg-1" ng-class="{'white-bg': !$ctrl.is6MonthsSelected,'grey-bg': $ctrl.is6MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term6Months.net }}
+                                      </div>
+                                      <div class="col-lg-1" ng-class="{'white-bg': !$ctrl.is6MonthsSelected,'grey-bg': $ctrl.is6MonthsSelected}">
+                                        <input type="number" class="form-control input-sm" ng-model="$ctrl.quote.financeOption.term6Months.gross"></input>
+                                      </div>
+                                      <div class="col-lg-2 text-right pad-sm" ng-class="{'white-bg': !$ctrl.is6MonthsSelected,'grey-bg': $ctrl.is6MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term6Months.monthlyPremiumAmount }}
+                                      </div>
+                                      <div class="col-lg-2 text-right pad-sm" ng-class="{'white-bg': !$ctrl.is6MonthsSelected,'grey-bg': $ctrl.is6MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term6Months.totalInterestPayable }}
+                                      </div>
+                                      <div class="col-lg-1" ng-class="{'white-bg': !$ctrl.is6MonthsSelected,'grey-bg': $ctrl.is6MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term6Months.equivalentAPR }}
+                                      </div>
+                                      <div class="col-lg-1">
+                                         <button type="select" class="btn btn-primary btn-sm" ng-click="$ctrl.selectQuote('6MonthsSelected')">Select</button>
+                                      </div>
+                          </div>
+                          <div class="row">
+                                      <div class="col-lg-2" ng-class="{'white-bg': !$ctrl.is8MonthsSelected,'grey-bg': $ctrl.is8MonthsSelected}">
+                                         8 Months
+                                      </div>
+                                      <div class="col-lg-1" ng-class="{'white-bg': !$ctrl.is8MonthsSelected,'grey-bg': $ctrl.is8MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term8Months.net }}
+                                      </div>
+                                      <div class="col-lg-1" ng-class="{'white-bg': !$ctrl.is8MonthsSelected,'grey-bg': $ctrl.is8MonthsSelected}">
+                                        <input type="number" class="form-control input-sm" ng-model="$ctrl.quote.financeOption.term8Months.gross"></input>
+                                      </div>
+                                      <div class="col-lg-2 text-right pad-sm" ng-class="{'white-bg': !$ctrl.is8MonthsSelected,'grey-bg': $ctrl.is8MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term8Months.monthlyPremiumAmount }}
+                                      </div>
+                                      <div class="col-lg-2 text-right pad-sm" ng-class="{'white-bg': !$ctrl.is8MonthsSelected,'grey-bg': $ctrl.is8MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term8Months.totalInterestPayable }}
+                                      </div>
+                                      <div class="col-lg-1 " ng-class="{'white-bg': !$ctrl.is8MonthsSelected,'grey-bg': $ctrl.is8MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term8Months.equivalentAPR }}
+                                      </div>
+                                      <div class="col-lg-1">
+                                         <button type="select" class="btn btn-primary btn-sm" ng-click="$ctrl.selectQuote('8MonthsSelected')">Select</button>
+                                      </div>
+                          </div>
+                           <div class="row">
+                                      <div class="col-lg-2 " ng-class="{'white-bg': !$ctrl.is10MonthsSelected,'grey-bg': $ctrl.is10MonthsSelected}">
+                                         10 Months
+                                      </div>
+                                      <div class="col-lg-1 " ng-class="{'white-bg': !$ctrl.is10MonthsSelected,'grey-bg': $ctrl.is10MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term10Months.net }}
+                                      </div>
+                                      <div class="col-lg-1 " ng-class="{'white-bg': !$ctrl.is10MonthsSelected,'grey-bg': $ctrl.is10MonthsSelected}">
+                                        <input type="number" class="form-control input-sm" ng-model="$ctrl.quote.financeOption.term10Months.gross"></input>
+                                      </div>
+                                      <div class="col-lg-2 text-right pad-sm" ng-class="{'white-bg': !$ctrl.is10MonthsSelected,'grey-bg': $ctrl.is10MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term10Months.monthlyPremiumAmount }}
+                                      </div>
+                                      <div class="col-lg-2 text-right pad-sm" ng-class="{'white-bg': !$ctrl.is10MonthsSelected,'grey-bg': $ctrl.is10MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term10Months.totalInterestPayable }}
+                                      </div>
+                                      <div class="col-lg-1 " ng-class="{'white-bg': !$ctrl.is10MonthsSelected,'grey-bg': $ctrl.is10MonthsSelected}">
+                                        {{ $ctrl.quote.financeOption.term10Months.equivalentAPR }}
+                                      </div>
+                                      <div class="col-lg-1">
+                                         <button type="select" class="btn btn-primary btn-sm" ng-click="$ctrl.selectQuote('10MonthsSelected')">Select</button>
+                                      </div>
+                          </div>          
+                  </form>
+               </div>
+                  </div>
+            </div>
+          </div>
+          </div>
+      </div>
+     <div class="col-lg-1">
+    </div>
+</div> 
+
+
+<!-- Finance Section Below -->
+<div class="row" ng-show="$ctrl.isPremiumDetails">
+ <div class="col-lg-1">
+ </div> 
+  <div class="col-lg-10">
+  <div class="panel-group" id="accordionFinanceDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" ng-click="$ctrl.financeDetails = !$ctrl.financeDetails">
+          Finance details
+        </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" ng-show="$ctrl.financeDetails">
+      <div class="panel-body">
+              <div class="jumbotron">
+                  <form name="quickQuoteForm" class="form-horizontal">
+          
+                  <div class="row">
+                                    <div class="col-lg-4">
+                                       <strong>Total Cost of Premium</strong>
+                                    </div> 
+                                    <div class="col-lg-2">
+                                        {{ $ctrl.finance.totalPremium }}
+                                     </div>
+                    </div>
+                    
+                    <div class="row">
+                                    <div class="col-lg-4">
+                                       <strong>Agreement Term</strong>
+                                    </div> 
+                                    <div class="col-lg-2">
+                                        {{ $ctrl.finance.term }}
+                                     </div>
+                    </div>
+                    
+                   <div class="row">
+                                    <div class="col-lg-4">
+                                       <strong>Interest Rate</strong>
+                                    </div> 
+                                     <div class="col-lg-2">
+                                        {{ $ctrl.finance.net }}
+                                     </div>
+                    </div>
+                    
+                    <div class="row">
+                                    <div class="col-lg-4">
+                                       <strong>Monthly Payment Amount</strong>
+                                    </div> 
+                                     <div class="col-lg-2">
+                                        {{ $ctrl.finance.monthlyPremiumAmount }}
+                                     </div>
+                    </div>
+                     <div class="row">
+                                    <div class="col-lg-4">
+                                       <strong>Total Amount Payable</strong>
+                                    </div> 
+                                     <div class="col-lg-2">
+                                        {{ $ctrl.finance.totalAmountPayable }}
+                                     </div>
+                    </div>
+                    <div class="row"><br><div>
+          
+          </form>
+               </div>
+                  </div>
+            </div>
+          </div>
+          </div>
+      </div>
+     <div class="col-lg-1">
+    </div>
+</div> 
+
+
+    <div class="form-group" ng-show="$ctrl.isPremiumDetails">
+        <div class="col-lg-10 col-lg-offset-2">
+          <button type="back" class="btn btn-default btn-back" ng-click="$ctrl.back()">Back</button>
+          <button type="next" class="btn btn-primary" ng-disabled="!$ctrl.isNotFinanceSelected" ng-click="$ctrl.next()">Next</button>
+        </div>
+    </div>
+ 
+
+  <form name="complianceForm" class="form-horizontal" ng-show="$ctrl.isComplianceDetails">
+    <legend>Enter Documentation Details</legend>
+    <fieldset>
+    <h6>If you are offering finance you must read the appropriate script to the customer. If the customer would like to see any of there documents before proceeding these are avalaible below</h6>
+    <div class="row">
+       <div class="col-lg-5">Credit Agreement Explanation</div>
+        <div class="col-lg-1">
+          <a class="anchorblue" ng-click="$ctrl.openCreditAgreementExplanation()">View</a>
+        </div> 
+      </div> 
+        <div class="row">
+          <div class="col-lg-5">Running Account Credit Agreement(RACA)</div>
+          <div class="col-lg-1">
+            <a class="anchorblue" ng-click="$ctrl.openRACADocument()">View</a>
+          </div>
+          <div class="col-lg-1">
+            <a class="anchorblue" ng-click="$ctrl.downloadRACADocument()">Download</a>
+          </div>
+          <div class="col-lg-1">
+            <a class="anchorblue" ng-click="$ctrl.openEdocs()" ng-show="$ctrl.isDownloadedRaca">Upload</a>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-5">Standard European Consumer Credit Information(SECCI)</div>
+          <div class="col-lg-1">
+            <a class="anchorblue" ng-click="$ctrl.openSECCIDocument()">View</a>
+          </div>
+        </div>
+        <br><br>
+        <div class="row">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="back" class="btn btn-default btn-back" ng-click="$ctrl.back()">Back</button>
+            <button type="next" class="btn btn-primary" ng-disabled="$ctrl.isCompliant()" ng-click="$ctrl.checkRulesForClient()">Submit</button>
+          </div>
+        </div>
+    </fieldset>
+  </form>
+  <form name="bankForm" class="form-horizontal" ng-show="$ctrl.isBankDetails">
+    <legend>Enter Bank Details</legend>
+    <fieldset>
+      <div class="form-group">
+        <label for="bankName" class="col-lg-2 control-label">Bank Name</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.bankName" placeholder="Enter Bank Name" type="text" required focus>
+        </div>
+      </div>
+        <div class="form-group">
+        <label for="bankAddress" class="col-lg-2 control-label">Bank Address</label>
+        <div class="col-lg-10">
+          <textarea ng-model="$ctrl.newClient.bankAddress" class="form-control" rows="1" required focus></textarea>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="accountName" class="col-lg-2 control-label">Account Name</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.newClient.accountName" placeholder="Enter Account Name" type="text" required focus>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sortCode" class="col-lg-2 control-label">Sort Code</label>
+        <div class="col-lg-1">
+          <input class="form-control" ng-model="$ctrl.newClient.sortCode1" type="text" maxlength="2" required focus>
+        </div>
+       
+        <div class="col-lg-1">
+          <input class="form-control" ng-model="$ctrl.newClient.sortCode2" type="text" maxlength="2" required focus>
+        </div>
+        <div class="col-lg-1">
+          <input class="form-control" ng-model="$ctrl.newClient.sortCode3" type="text" maxlength="2" required focus>
+        </div>
+        <label for="accountNumber" class="col-lg-2 control-label">Account Number</label>
+        <div class="col-lg-5">
+          <input class="form-control" ng-model="$ctrl.newClient.accountNumber" placeholder="Enter Account Number" type="text" required focus>
+        </div>
+      </div>
+        
+
+        <div class="form-group">
+          <div class="col-lg-10 col-lg-offset-2">
+            <button type="back" class="btn btn-default btn-back" ng-click="$ctrl.back()">Back</button>
+            <button type="submit" class="btn btn-primary"  ng-click="$ctrl.next()">Next</button>
+            <!-- <button type="submit" class="btn btn-primary" ng-click="$ctrl.selectAgency()">Submit</button> -->
+          </div>
+        </div>
+
+        <!-- <div class="row" ng-show="selected">
+        <div class="col-lg-10 col-lg-offset-2">
+            <div>Selected Agency: {{ selected }}</div>
+        </div>
+        </div> -->
+
+    </fieldset>
+  </form>
+
+  </div>

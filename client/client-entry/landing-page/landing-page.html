@@ -1,0 +1,145 @@
+
+<nav id="onboard" class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header margin-rows">
+      <span class="navbar-brand arialBold full-width">{{$ctrl.navHeader}}</span>
+      <!--<span class="navbar-brand arialBold">{{$root.userType}}</span>-->
+    </div>
+    <div class="collapse navbar-collapse" collapse="false">
+      <ul class="nav navbar-nav navbar-right">
+         
+       <!--  <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$root.inputJson.policyApplication.brokerDetails.name}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="" ng-click="$ctrl.changeState('newloan')">Create New Loan</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newquote')">Create New Quote</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('uploadwetsign')">Upload Wet Sign</a></li>
+            <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          </ul>
+        </li> -->
+        <li class="dropdown place-center">
+          <a class="arialBold" href="" ng-click="$ctrl.logout()">Log out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<div class="row">
+  <div class="lightBlueBg round-corner" ng-click="$ctrl.premiumCalculatorPage()">
+    <div class="row">
+    <div class="col-lg-4 place-center">
+        <img id="logo-broker" class="img-pad" src="/images/Calculator.jpg" alt="IMAGE">
+    </div>
+    <div class="col-lg-8 dashboard-text-box">
+    <h3>Premium 
+    finance
+    calculator </h3>
+    </div>
+    </div>
+  </div>
+
+  <div class="lightBlueBg round-corner" ng-click="$ctrl.createQuoteForCustomer()">
+    <div class="row">
+    <div class="col-lg-4 place-center">
+        <img id="logo-broker" class="img-pad" src="/images/how-does-pf-work.jpg" alt="IMAGE">
+    </div>
+    <div class="col-lg-8 dashboard-text-box">
+    <h3>Create a new finance quote for a customer</h3>
+    </div>
+    </div>
+  </div>
+  <div class="lightBlueBg round-corner" ng-click="$ctrl.createPayment()">
+    <div class="row">
+    <div class="col-lg-4 place-center">
+        <img id="logo-broker" class="img-pad" src="/images/Quote-buy.jpg"  alt="IMAGE">
+    </div>
+    <div class="col-lg-8 dashboard-text-box">
+    <h3>Create a full payment request for a customer</h3>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+<div class="row">
+   <div class="lightBlueBg round-corner" ng-click="$ctrl.createCustomer()">
+    <div class="row">
+    <div class="col-lg-4 place-center">
+        <img id="logo-broker" class="img-pad" src="/images/who-are-pf.jpg" alt="IMAGE">
+    </div>
+    <div class="col-lg-8 dashboard-text-box">
+    <h3>Create a new customer</h3>
+    </div>
+    </div>
+  </div>
+
+  <div class="lightBlueBg round-corner" ng-click="$ctrl.searchCustomer()">
+    <div class="row">
+    <div class="col-lg-4 place-center">
+        <img id="logo-broker" class="img-pad" src="/images/Search.jpg" alt="IMAGE">
+    </div>
+    <div class="col-lg-8 dashboard-text-box">
+    <h3>Search for an existing customer</h3>
+    </div>
+    </div>
+  </div>
+  <div class="lightBlueBg round-corner" ng-click="$ctrl.redirectToMI()">
+    <div class="row">
+    <div class="col-lg-4 place-center">
+        <img id="logo-broker" class="img-pad" src="/images/reporting.jpg" alt="IMAGE">
+    </div>
+    <div class="col-lg-8 dashboard-text-box">
+    <h3>Management information & reporting</h3>
+    </div>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<!-- <div class="row"> 
+<div class="col-lg-12">
+<div class="panel-group" id="accordionClientDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" ng-click="$ctrl.isSearchNew=!$ctrl.isSearchNew">
+            Search
+         </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" ng-show="$ctrl.isSearchNew">
+      <div class="panel-body">
+      
+              <div class="jumbotron">
+         <div class="row">
+               <search-client></search-client>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div> 
+</div>
+</div> 
+    
+<div class="row"> 
+<div class="col-lg-12">
+<div class="panel-group" id="accordionClientDetails">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a class="accordion-toggle" ng-click="$ctrl.selectAgency();">
+              Quote
+           </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+        </h4>
+      </div>
+      <div id="collapseOne" class="panel-collapse collapse in" ng-show="$ctrl.isQuoteNew">
+        <div class="panel-body">
+                         <create-quote-dir></create-quote-dir>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+ </div>  -->

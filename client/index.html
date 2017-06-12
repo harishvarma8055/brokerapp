@@ -1,0 +1,30 @@
+<head>
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <script src="https://code.highcharts.com/highcharts.js"></script>
+   <link rel="stylesheet" href="themes/Flatly.css" id=currentTheme> 
+  <base href="/">
+</head>
+<body>
+<div ng-app="closedemo" ng-strict-di="" class="container-fluid">
+
+<div ng-show="$root.isLoggedIn" class="row">
+  <div class="col-sm-6 logo-left"><img id="logo-main" src="/logo/close-brothers-pf-logo.jpg" style="width: 290px;" alt="Home"></div>
+    <div class="col-sm-6 logo-right"><img id="logo-broker" src="/logo/broker-logo.png" style="width: 200px;" alt="broker-logo"></div>
+</div>
+<div ui-view=""></div>
+<!-- <audio-toggle>
+</audio-toggle> -->
+<!-- <div ng-show="$root.isLoggedIn"> -->
+<div ng-show="$root.isLoggedIn">
+   <div class="row">
+     <div class="col-lg-12 footer-logo">
+        <img id="logo-main" src="/logo/award1.png">
+        <img id="logo-main" src="/logo/award2.png">
+        <img id="logo-main" src="/logo/award3.png">
+        <img id="logo-main" src="/logo/award4.png">
+     </div>
+   </div>
+   <div class="row"><p class="top-line">© 2016 Close Brothers Premium Finance. All rights reserved.</div>
+   </div>
+</div>     
+</body>

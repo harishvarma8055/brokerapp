@@ -1,0 +1,77 @@
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <span class="navbar-brand">Customer Insights</span>
+      <span class="navbar-brand">{{$root.globalBrokerType}}</span>
+    </div>
+    <div class="collapse navbar-collapse" collapse="false">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{$root.inputJson.policyApplication.brokerDetails.name}} <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="" ng-click="$ctrl.changeState('dashboard')">Dashboard</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newloan')">Create New Loan</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newquote')">Create New Quote</a></li>
+            <li><a href="" ng-click="$ctrl.redirectToMI()">View MI Reports</a></li>
+            <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="row"  ng-show="!$ctrl.useFullPage">
+        <div class="col-lg-6 col-sm-12">
+            <div class="panel panel-default">
+      		<div class="panel-heading">Payment Reconcilation Report</div>
+     	           <div class="panel-body">
+				<div ng-show="!$ctrl.drillDownPieChart">
+                                         <highchart id="piechart1" config="pieChartConfig" class="span9" ></highchart><br>
+                                </div>
+                                <div ng-show="$ctrl.drillDownPieChart">
+                                    <div ng-show="$ctrl.instanceView">
+                                         <div ui-grid="pieGridOptions" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize>
+                                         </div>
+                                         <button type="DrillUp" class="btn btn-primary btn-md" ng-click="$ctrl.drillUpInstanceView()">Drill Up</button>
+                                    </div>
+                                    <div ng-show="!$ctrl.instanceView">
+                                         <highchart id="columnchart1" config="columnChartConfig" class="span9" ></highchart><br>
+                                         <button type="DrillUp" class="btn btn-primary btn-md" ng-click="$ctrl.drillUpPieChart()">Drill Up</button>
+                                    </div>
+                                         
+                                </div>
+                               
+ 		    </div>
+             </div>
+
+        </div>
+
+        <div class="col-lg-6 col-sm-12">
+            <div class="panel panel-default">
+      		<div class="panel-heading">Payment Reconcilation Report</div>
+     	           <div class="panel-body">
+				<div ng-show="!$ctrl.drillDown">
+                                         <highchart id="chart1" config="chartConfig" class="span9" ></highchart><br>
+                                </div>
+                                <div ng-show="$ctrl.drillDown">
+                                         <div ui-grid="gridOptions" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize></div>
+                                         <button type="DrillUp" class="btn btn-primary btn-md" ng-click="$ctrl.drillUp()">Drill Up</button>
+                                </div>
+ 		    </div>
+             </div>
+
+        </div>
+</div>
+
+<div class="row"  ng-show="$ctrl.useFullPage">
+<div class="panel-heading">{{$ctrl.processDiagramTitle}}</div>
+<div class="panel-body">
+<process-diagram></process-diagram>
+<button type="DrillUp" class="btn btn-primary btn-md" ng-click="$ctrl.drillToCharts()">Drill Up</button>
+ </div>
+
+
+</div>
+

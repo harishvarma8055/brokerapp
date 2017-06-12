@@ -1,0 +1,66 @@
+ <form name="quickQuoteForm" class="form-horizontal" novalidate>  
+    <fieldset>
+
+    <div class="form-group" ng-show="$ctrl.isVisible == 'true'">
+       <label for="referenceTpe"  class="col-lg-2 control-label">Select Reference Type</label>
+       <div class="col-lg-10">
+         <select class="form-control" id="select" ng-model="$ctrl.referenceType" required focus>
+           <option>Loan Reference</option>
+           <option>Quote Reference</option>
+         </select>
+       </div>
+</div>
+<!-- <div class="form-group" ng-show="$ctrl.referenceType == 'Loan Reference'"> -->
+
+
+<div class="form-group" >
+
+        <label for="referenceNumber" class="col-lg-2 control-label" style="padding-right: 0">Loan Reference Number</label>
+        <div class="col-lg-4">
+          <input class="form-control" ng-model="$ctrl.referenceNumber" placeholder="Enter Loan Reference Number" type="text" required focus>
+        </div>
+</div>
+<div class="form-group">
+<div class="col-lg-4" style="padding-left: 40px;">
+
+  <button class="col-lg-4 col-lg-offset-6 btn btn-sm" onClick="downloadRaca()">Download RACA</button>
+  <script type="text/javascript">
+       function downloadRaca() {
+          var t = document.createElement('a');
+          t.setAttribute('download', '');
+          t.setAttribute('href', 'pdf/raca.pdf');
+          t.innerHTML = 'Download';
+          document.body.appendChild(t);
+          t.click();
+          document.body.removeChild(t);
+          }
+
+  </script>
+
+  </div>
+  
+  
+</div>
+
+<div class="form-group" ng-show="$ctrl.referenceType == 'Quote Reference'">
+        <label for="referenceNumber" class="col-lg-2 control-label">Enter the Quote Reference Number</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.referenceNumber" placeholder="Enter Quote Reference Number" type="text" required focus>
+        </div>
+</div>
+<div class="form-group">
+          <!-- <div class="form-group" ng-show="($ctrl.referenceType == 'Quote Reference') || ($ctrl.referenceType == 'Loan Reference'  || $ctrl.isVisible =='false')"> -->
+         <label for="fileUploader" class="col-lg-2 control-label" style="margin-top:-10px;">Select File</label>
+
+          <input class="col-lg-2" type="file" ng-model="$ctrl.uploadedFile" name="file" base-sixty-four-input required onload="onLoad" maxsize="500" accept="application/pdf">
+          <button class="col-lg col-lg btn btn-primary" ng-disabled="upload" ng-click="$ctrl.uploadDocument()">Upload Wet Sign </button>
+          <t ng-hide="$ctrl.fileuploaded" style="color:red;">Uploaded Successfully !</t>
+          <br>
+         
+          
+</div>
+</div>
+</div>
+
+   </fieldset>
+  </form>

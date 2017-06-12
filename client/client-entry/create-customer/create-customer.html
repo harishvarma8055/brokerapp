@@ -1,0 +1,387 @@
+
+<nav id="onboard" class="navbar navbar-default" ng-show="!$root.isNotDirectView">
+  <div class="container-fluid">
+    <div class="navbar-header margin-rows">
+      <span class="navbar-brand arialBold">{{$ctrl.navHeader}}</span>
+      <span class="navbar-brand arialBold">{{$root.userType}}</span>
+    </div>
+    <div class="collapse navbar-collapse" collapse="false">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li class="dropdown">
+        <li><a href="" class="arialBold" ng-click="$ctrl.logout()">Log out</a></li>
+          <!-- <ul class="dropdown-menu">
+             <li><a href="" ng-click="$ctrl.changeState('dashboard')">Dashboard</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newloan')">Create New Loan</a></li>
+            <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          </ul> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div ng-show="!$ctrl.isCreatedCustomerDetails">
+
+<div class="row margin-rows"> 
+ <div class="col-lg-12">  
+ <div class="jumbotron">
+                  <form name="customerForm" id="customerform" class="form-horizontal">
+                   <div class="row" ng-show="!$root.isSearchReturned">
+                     <div class="col-lg-5 col-lg-offset-4" ng-show="!$root.isNotDirectView">
+                        <h4 class="arialNormal">Enter customer details</h4>
+                     </div> 
+                     <div class="col-lg-5" ng-show="$root.isNotDirectView">
+                        <h4 class="arialNormal">Create a new customer</h4>
+                     </div>   
+                    </div>
+                   <div class="row" ng-show="$root.isSearchReturned">
+                    <div class="col-lg-5">
+                    <h4 class="arialNormal">Check the customer details</h4>
+                    </div>   
+                   </div>  
+                  <fieldset>
+                   <div class="form-group">
+                      <label for="customerName" class="col-lg-4 col-lg-offset-1 control-label">Name</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.customerName" placeholder="Enter customer name" type="text" required focus value = "{{customerName}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="postCode" class="col-lg-4 col-lg-offset-1  control-label">Post code</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.address.postcode" placeholder="Enter post code" type="text" required focus value = "{{postCode}}">
+                      </div>
+                     <div class="col-lg-2">
+                        <button type="next" class="btn btn-primary" ng-click="$ctrl.findAddress()" formnovalidate>Find address</button>      
+                     </div> 
+                    </div>
+                    <div class="form-group">
+                      <label for="selectAddress" class="col-lg-4 col-lg-offset-1  control-label">Select address</label>
+                      <div class="col-lg-4">
+                        <select class="form-control" id="selectAddress" ng-model="$root.quote.newClient.customerAddress" ng-change="$ctrl.populateAddressFields()">
+                          <option ng-repeat="address in addresses"
+                          value="{{address}}" >{{address}}</option>
+                        </select>
+                      </div>
+                    </div> 
+                    <div class="form-group ng-hide">
+                      <label for="textArea" class="col-lg-4 col-lg-offset-1  control-label">Address</label>
+                      <div class="col-lg-4">
+                        <textarea ng-model="$ctrl.quote.newClient.customerAddress" class="form-control" rows="3" required focus></textarea>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="address1" class="col-lg-4 col-lg-offset-1  control-label">Address 1</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.address.addressLine1" placeholder="Enter Address 1" type="text" required focus value = "{{addressLine1}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="address2" class="col-lg-4 col-lg-offset-1 control-label">Address 2</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.address.addressLine2" placeholder="Enter Address 2" type="text" required focus value = "{{addressLine2}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="address3" class="col-lg-4 col-lg-offset-1  control-label">Address 3</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.address.addressLine3" placeholder="Enter Address 3" type="text"  focus value = "{{addressLine3}}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="address4" class="col-lg-4 col-lg-offset-1  control-label">Address 4</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.address.addressLine4" placeholder="Enter Address 4" type="text"  focus value = "{{addressLine4}}">
+                      </div>
+                    </div>
+                     
+                    <div class="form-group">
+                      <label for="inputEmail" class="col-lg-4 col-lg-offset-1  control-label">Email address</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.customerEmail" placeholder="Enter customer email" name="email" type="email" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" oninvalid="setCustomValidity('Please enter valid email \n your@email.com')" onchange="try{setCustomValidity('')}catch(e){}" focus value = "{{emailId}}">
+                      </div>
+                    </div>
+                    
+
+                   <!--  <div class="form-group">
+                      <label for="premiumRate" class="col-lg-2 control-label">Premium rate £</label>
+                      <div class="col-lg-10">
+                        <input class="form-control" ng-model="$ctrl.quote.newClient.premiumRate" placeholder="Enter Premium Rate" type="text" required focus>
+                      </div>
+                    </div> -->
+
+                    <div class="form-group">
+                      <label for="CustomerType" class="col-lg-4 col-lg-offset-1 control-label">Trader type</label>
+                      <div class="col-lg-4">
+                        <select class="form-control" id="select" ng-model="$root.selectedTraderType" ng-options="traderTypeObj.description for traderTypeObj in traderTypeOptions track by traderTypeObj.type">
+                          </select>
+                      </div>
+                    </div>    
+                    <div class="form-group" ng-show="$root.selectedTraderType.description == 'Private Individual'">
+                      <label for="dob" class="col-lg-4 col-lg-offset-1  control-label">Date of birth</label>
+
+
+
+                     <div class="col-lg-4">
+                   <input type="text" class="form-control" uib-datepicker-popup="{{dateFormat}}" ng-model="$root.customerDetails.dateOfBirth" is-open="availableDatePopup.opened" datepicker-options="availableDateOptions" ng-required="true" close-text="Close" ng-click="OpenAvailableDate()"
+          placeholder="Date of Birth" value = "{{dateOfBirth}}" readonly />
+                     </div>
+
+
+
+                    </div>
+                    <div class="form-group">
+                      <label for="customerMobile" class="col-lg-4 col-lg-offset-1  control-label">Mobile number</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.customerMobile" placeholder="Enter customer mobile number" type="text" onlydigits required focus>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputPhoneNumber" class="col-lg-4 col-lg-offset-1  control-label">Phone number</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.customerPhone" placeholder="Enter customer phone number" type="text"  onlydigits focus value = "{{telephone}}">
+                      </div>
+                    </div>
+
+                    <div class="form-group" ng-show="$root.selectedTraderType.description == 'Limited Company'">
+                      <label for="inputCompanyRegistrationNumber" class="col-lg-4 col-lg-offset-1  control-label">Company registration number</label>
+                      <div class="col-lg-4">
+                        <input class="form-control" ng-model="$root.customerDetails.companyRegNo" placeholder="Enter company registration number" type="text" required focus>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+                      <label for="NatureOfBusiness" class="col-lg-4 col-lg-offset-1  control-label">Nature of business</label>
+                      <div class="col-lg-4">
+                        <select class="form-control" id="select" ng-model="$root.selectedBusinessType" ng-options="businessType.description for businessType in businessTypeOptions track by businessType.type" required focus value = "{{natureOfBusiness}}">
+                        </select>
+                      </div> 
+                  </div>
+                           <!--  <div>
+                               <button id = "refresh" hidden="hidden" type="submit" ng-click="">Refresh</button>
+                            </div>  -->
+
+                    </fieldset>
+                </form>
+                </div>
+  </div>
+  </div>
+
+  </div>
+
+    <!-- Implementation for details -->
+
+<div class="rows margin-rows" style="margin-bottom: 0">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0" ng-show="$ctrl.isCreatedCustomerDetails">
+            <div class="row">
+            <div class="col-lg-12 text-center dark-blue">
+               <h3 class="ariaNormal"><strong>{{$root.customerDetails.companyName}}</strong></h3>
+            </div>   
+            </div>
+            <div class="row">
+             <div class="col-lg-7">
+              <span class="arialNormal dark-blue"><strong>Client address:</strong></span>
+              <span class="arialNormal">{{$root.customerDetails.address.addressLine1}}
+              </span> 
+             </div> 
+             <div class="col-lg-5">
+              <span class="arialNormal dark-blue"><strong>Mobile number:</strong></span>
+              <span class="arialNormal">{{ $root.customerDetails.customerMobile }}
+              </span> 
+             </div> 
+            </div>
+             <div class="row"> 
+              <div class="col-lg-7">
+               <span class="arialNormal pad-text">{{$root.customerDetails.address.addressLine2}}</span> 
+              </div>  
+            </div>
+             <div class="row"> 
+              <div class="col-lg-7">
+              <span class="arialNormal pad-text">{{$root.customerDetails.address.postcode}}</span>
+              </div> 
+              <div class="col-lg-5">
+              <span class="arialNormal dark-blue"><strong>Phone number:</strong></span>
+              <span class="arialNormal">{{$root.customerDetails.customerPhone}}
+              </span> 
+             </div>  
+            </div>
+            <br>
+       
+            <div class="row">
+              <div class="col-lg-7">
+                <span class="arialNormal dark-blue"><strong>Business type:</strong></span>
+                <span class="arialNormal">{{$root.selectedBusinessType.description}}</span>
+              </div>
+              <div class="col-lg-5">
+                <span class="arialNormal dark-blue"><strong>Email address:</strong></span>
+                <span class="arialNormal">{{$root.customerDetails.customerEmail}}</span>
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-lg-7">
+                <span class="arialNormal dark-blue"><strong>Trader Type:</strong></span>
+                <span class="arialNormal pad-sm">{{$root.selectedTraderType.description}}</span>
+              </div>
+            </div>
+        </div>
+    </div>                                                         
+   </div>
+   <div class="row margin-rows" ng-show="$ctrl.isCreatedCustomerDetails">
+      <div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.editCustomer()">Edit customer details</button>
+     </div>   
+  </div>
+  <div ng-show="$ctrl.isCreatedCustomerDetails">
+    <br> 
+    </div>  
+</div> 
+
+<div class="row margin-rows" ng-show="$ctrl.isCreatedCustomerDetails">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0" >
+ <h4>Quotes</h4>
+ <br>
+ <div class="row">
+   <div class="col-lg-12">
+    <table class="table">
+    <thead>
+      <tr class="dark-blue">
+        <th>Quote Reference</th>
+        <th>Total Value</th>
+        <th>Date Created</th>
+        <th>Created By</th>
+        <th>Expires</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="5"><span class=arialNotmal><strong>There are no quotes for this customer</strong></span>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.createQuote()">Create new quote</button>
+</div>  
+</div>
+<div ng-show="$ctrl.isCreatedCustomerDetails">
+<br> 
+</div>
+</div>
+
+<div class="row margin-rows" ng-show="$ctrl.isCreatedCustomerDetails">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0" >
+ <h4>Credit Agreements</h4>
+ <br>
+ <div class="row">
+   <div class="col-lg-12">
+    <table class="table">
+    <thead>
+      <tr class="dark-blue">
+        <th>Agreement Reference</th>
+        <th>Premium</th>
+        <th>Date Created</th>
+        <th>Status</th>
+      <!--   <th>Branch</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td colspan="4"><span class=arialNotmal><strong>There are no credit agreements for this customer</strong></span>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+ </div>
+ </div>
+ </div>
+
+<div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.viewIprompt()">Review agreements via i-prompt</button>
+</div> 
+</div>
+<div ng-show="$ctrl.isCreatedCustomerDetails">
+<br> 
+</div>
+
+
+<div class="row margin-rows" ng-show="$ctrl.isCreatedCustomerDetails">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0">
+ <h4>Full payment transaction</h4>
+ <br>
+ <div class="row">
+   <div class="col-lg-12">
+    <table class="table">
+    <thead>
+      <tr class="dark-blue">
+        <th>Payment Reference</th>
+        <th>Payment</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Type</th>
+      <!--   <th>Branch</th> -->
+      </tr>
+    </thead>
+    <tbody>
+     <tr>
+        <td colspan="5"><span class=arialNotmal><strong>There are no full payment transactions for this customer
+        </strong></span>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+ </div>
+ </div>
+ </div>
+ <div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.createPayment()">Create a new payment request</button>
+</div>  
+</div>
+
+<div ng-show="$ctrl.isCreatedCustomerDetails">
+<br> 
+</div>
+</div>
+
+
+<!-- Submit Buttons -->
+ <div class="row margin-rows" ng-show="!$root.isNotDirectView">
+                        <div class="col-lg-2">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.returnToHomePage()">Return to Homepage</button>
+                        </div>
+
+                        <div ng-show="!$ctrl.isCreatedCustomerDetails">
+
+                            <div class="col-lg-1 col-lg-offset-7">
+                                    <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.reset()">Reset</button>
+                            </div>
+                           
+                            <div class="col-lg-2">
+                                    <button type="submit" class="btn btn-primary right-button" ng-disabled="!customerForm.email.$valid" ng-click="$ctrl.createCustomer()">Create a new customer</button>
+                            </div>
+
+                       </div> 
+                       
+                          <div ng-show="$ctrl.isCreatedCustomerDetails">
+                           
+                            <div class="col-lg-2 col-lg-offset-8">
+                                    <button type="submit" class="btn  btn-primary right-button" ng-disabled="!customerForm.email.$valid" ng-click="$ctrl.createCustomerRecord()">Create a new customer</button>
+                            </div>
+
+                       </div>     
+
+</div> 
+
+
+
+
+
+

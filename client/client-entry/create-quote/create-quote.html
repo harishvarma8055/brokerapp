@@ -1,0 +1,571 @@
+
+<nav id="onboard" class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header margin-rows">
+      <span class="navbar-brand arialBold" style="height:0px!important">{{$ctrl.navHeader}}</span>
+      <span class="navbar-brand arialBold" style="height:0px!important">{{$root.userType}}</span>
+    </div>
+    <div class="collapse navbar-collapse" collapse="false">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a class="arialBold" href="" ng-click="$ctrl.logout()">Log out</a>
+          <!-- <ul class="dropdown-menu">
+             <li><a href="" ng-click="$ctrl.changeState('dashboard')">Dashboard</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newloan')">Create New Loan</a></li>
+            <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          </ul> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="row margin-rows" ng-show="$ctrl.isDocumentation">
+     <div class="col-lg-12">
+     <span class="arialBold">
+     <span class="lightBlueFont">{{$ctrl.navHeader1}} > {{$ctrl.navHeader2}} > {{$ctrl.navHeader3}} > {{$ctrl.navHeader4}} > {{$ctrl.navHeader5}}</span>
+     </span>
+    </div>
+  </div>  
+  <div class="row margin-rows" ng-show="$ctrl.isDocumentation">
+    <br>
+   <div class="col-lg-12">
+    <div class="jumbotron">
+    <div class="row" style="padding:top:0px;margin-left:0px;margin-top:0px;">
+       <h4 class="arialBold col-lg-12" style="padding-left:0px;">If you are offering finance you must read the appropriate script to the customer</h4>
+      </div>
+          <div class="row" style="padding-bottom:0px;">
+             <div class="col-lg-4">
+                            <h4 class="arialNormal"><strong>Click the link below to send your customer an invitation to review and sign documentation electronically
+                            </strong></h4>
+             </div>
+
+             <div class="col-lg-2 col-lg-offset-1 text-center">
+                          <h4 class="arialNormal"><strong>or</strong></h4>
+             </div>
+             <div class="col-lg-4">
+                             <h4 class="arialNormal"><strong>Click on the document links below to view and print the finance paperwork
+                            </strong></h4>
+             </div> 
+             
+         </div> 
+          <div class="row" style="padding-top:0px;">
+              <div class="col-lg-2">
+                      <img id="logo-broker" class="img-pad" style="padding-top:0px;" src="/images/create new customer.jpg" width=100%  alt="IMAGE">
+
+              </div>
+              <div class="col-lg-2"  style="padding-top:3%;">
+                      <a ng-click="$ctrl.createESignLink()" class="anchorblue"  ng-class="{disabled: $ctrl.isDisabled}">Send eSignature invitation</a>
+
+              </div>
+
+               <div class="col-lg-2 col-lg-offset-3" style="padding-right:0px;">
+                      <img id="logo-broker" style="padding-top:0px;" src="/images/Document.jpg" width=75%  alt="IMAGE">
+
+              </div>
+              <div class="col-lg-3" style="padding-left:0px;">
+                     <a ng-click="$ctrl.openCreditAgreementExplanation()" class="arialNormal anchorblue">Credit Agreement Questions and Answers</a><br>
+                         <a ng-click="$ctrl.openSECCIDocument()" class="arialNormal anchorblue">Standard European Consumer Credit Information (SECCI)</a> <br>
+                       
+                        <a ng-click="$ctrl.openRACADocument()" class="arialNormal anchorblue">Running Account Credit Agreement (RACA)</a><br>
+
+              </div>
+           </div>   
+
+         </div>
+        </div> 
+    </div>
+    </div>
+      <div class="row margin-rows" ng-show="$ctrl.isDocumentation">
+          <div class="col-lg-1">
+            <button type="back" class="btn btn-default btn-back" ng-click="$ctrl.backToPayment()">Back</button>
+          </div>
+          <div class="col-lg-2 col-lg-offset-9">  
+            <!-- <button type="submit" class="btn btn-default btn-back">Clear</button> --> 
+            <button type="submit" class="btn btn-primary right-button"  ng-click="$ctrl.returnToHomePage()">Homepage</button>
+            
+          </div>
+   </div>
+
+ </div>
+ <div ng-show="$root.isBankDetails"> 
+<div class="row margin-rows">
+     <div class="col-lg-12">
+     <span class="arialBold">
+     <span class="lightBlueFont">{{$ctrl.navHeader1}} > {{$ctrl.navHeader2}} > {{$ctrl.navHeader3}} > {{$ctrl.navHeader4}} </span> > {{$ctrl.navHeader5}}
+     </span>
+    </div>
+ </div>
+  <br> 
+ <div class="row margin-rows">
+<div class="col-lg-12">
+<div class="jumbotron">
+   <div class="row">
+  <div class="col-lg-8 col-lg-offset-2">  
+         <!-- Bank section below -->                    
+<form name="bankForm" class="form-horizontal" id="bank_form">
+    <legend>Enter the customer bank details from which payments will be collected</legend>
+    <fieldset>
+      <!-- <div class="form-group">
+        <label for="bankName" class="col-lg-2 control-label">Bank Name</label>
+        <div class="col-lg-10">
+          <input class="form-control" ng-model="$ctrl.quote.newClient.bankName" placeholder="Enter Bank Name" type="text" required focus>
+        </div>
+      </div> -->
+        <!-- <div class="form-group">
+        <label for="bankAddress" class="col-lg-2 control-label">Bank Address</label>
+        <div class="col-lg-10">
+          <textarea ng-model="$ctrl.quote.newClient.bankAddress" class="form-control" rows="1" required focus></textarea>
+        </div>
+      </div> -->
+      <div class="form-group">
+        <label for="accountName" class="col-lg-4 col-lg-offset-1 control-label">Name of account holder</label>
+        <div class="col-lg-6">
+          <input class="form-control" ng-model="$ctrl.quote.newClient.accountName" placeholder="Enter name of account holder" type="text" required focus>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="sortCode" class="col-lg-4 col-lg-offset-1  control-label">Sort code</label>
+        <div class="col-lg-2">
+          <input class="form-control" ng-model="$ctrl.quote.newClient.sortCode1" type="text" maxlength="2" required focus>
+        </div>
+        <div class="col-lg-2 sort-code">
+          <input class="form-control" ng-model="$ctrl.quote.newClient.sortCode2" type="text" maxlength="2" required focus>
+        </div>
+        <div class="col-lg-2 sort-code">
+          <input class="form-control" ng-model="$ctrl.quote.newClient.sortCode3" type="text" maxlength="2" required focus>
+        </div>
+        </div>
+        <div class="form-group">
+        <label for="accountNumber" class="col-lg-4 col-lg-offset-1  control-label">Account number</label>
+        <div class="col-lg-6">
+          <input class="form-control" ng-model="$ctrl.quote.newClient.accountNumber" placeholder="Enter account number" type="text" maxlength="8" required focus>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+  </div>
+  </div>
+ </div>
+  <div class="row">
+          <div class="col-lg-1" ng-show="$root.backToCust">
+            <button type="back" class="btn btn-default btn-back" ng-click="$ctrl.backToCustomerDetails()">Back</button>
+          </div>
+          <div class="col-lg-1" ng-show="!$root.backToCust">
+            <button type="back" class="btn btn-default btn-back" ng-click="$ctrl.returnToHomePage()">Return To HomePage</button>
+          </div>
+
+
+          <div class="col-lg-1 col-lg-offset-10">  
+            <button form="bank_form" type="submit" class="btn btn-primary right-button" ng-click="bankForm.$valid && $ctrl.proceedToDocumentation()">Next</button>
+            <!-- <button type="submit" class="btn btn-primary" ng-click="$ctrl.selectAgency()">Submit</button> -->
+          </div>
+        </div>
+</div> 
+</div>
+ </div>
+ <!-- Customer Section Below -->
+<div class="row margin-rows" ng-show="$ctrl.isCustomerDetails"> 
+     <div class="col-lg-12">
+     <span class="arialBold">
+     <span class="lightBlueFont">{{$ctrl.navHeader1}} > {{$ctrl.navHeader2}} > {{$ctrl.navHeader3}} </span> > {{$ctrl.navHeader4}} > {{$ctrl.navHeader5}}
+     </span>
+    </div>
+ </div>
+ <!--  <div class="jumbotron">
+       To progress this quote you need to search for an existing customer or add new customer
+  </div> -->
+
+ <div ng-show="$ctrl.isCustomerDetails">
+   <div ng-show="!$root.isSearchReturned">
+      <search-client></search-client>
+ </div>
+ 
+ <div class="text-center" ng-show="!$root.isSearchReturned">
+     <span class="arialBold">or</span>
+ </div>
+  <div ng-show="!$ctrl.isNotDirectView">
+     <br>
+      <create-customer></create-customer>
+  </div> 
+  <div class="row margin-rows" ng-show="$root.isNotDirectView">
+                        <div class="col-lg-2" ng-show="$root.backBtn">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.backToFinance()">Back</button>
+                        </div>
+                         <div class="col-lg-2" ng-show="!$root.backBtn">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.backToFinanceCust()">Back</button>
+                        </div>
+                        <div class="col-lg-1 col-lg-offset-8">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.reset()">Clear</button>
+                        </div>
+                        <div class="col-lg-1">
+                                <button type="submit" form="customerform" class="btn btn-primary right-button" ng-click="$ctrl.proceedToPaymentDetails(customerform.$valid)" ng-disabled="$ctrl.isButtonClicked">Next</button>
+                        </div>
+
+       </div> 
+  </div>
+
+
+<!-- Policy Section Below -->
+<div ng-show="$root.isPolicyDetails">
+
+   <div class="row margin-rows">
+     <div class="col-lg-12">
+     <span class="arialBold">
+     <span class="lightBlueFont">{{$ctrl.navHeader1}}</span> > {{$ctrl.navHeader2}} > {{$ctrl.navHeader3}} > {{$ctrl.navHeader4}} > {{$ctrl.navHeader5}}
+     </span>
+    </div>
+   </div>
+    <br>
+
+
+    
+   <div class="row margin-rows">
+   <div class="col-lg-12">
+      <div class="jumbotron">
+    <form name="quickQuoteForm" class="form-horizontal" novalidate>  
+    <fieldset>
+    <div class="form-group">
+        <label for="policyNumber" class="col-lg-2 control-label" style="padding-right: 0">Policy number</label>
+        <div class="col-lg-10">
+          <input class="form-control" maxlength="12" ng-model="$ctrl.quote.newClient.policyNumberInput" placeholder="Enter policy number" type="text" onlydigits required focus>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label for="insurerName" class="col-lg-2 control-label" style="padding-right: 0">Insurer name</label>
+        <div class="col-lg-4">
+          <!-- <select class="form-control" ng-model="$ctrl.quote.newClient.insurerInput" id="select" required focus>
+            <option value=""></option>
+            <option ng-repeat="insurer in $root.brokerConfig.loan.insurers">{{insurer}}</option>
+          </select> -->
+          <select class="form-control" id="select" ng-model="$ctrl.quote.newClient.insurerInput" ng-options="insurerTypeObj.description for insurerTypeObj in insurerTypes track by insurerTypeObj.type">
+          </select>
+        </div>
+         <label for="inputPremiumValue" class="col-lg-2 control-label" style="padding-right: 0">Policy premium (&pound;)</label>
+        <div class="col-lg-4">
+          <input class="form-control text-right" maxlength="16" ng-model="$ctrl.quote.newClient.premiumValue" ng-change="$ctrl.updateAmountPayable()" ng-keypress ="$ctrl.amountFormatfilter($event)" ng-blur="$ctrl.amountFormat()" type="text" required focus>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="coverType" class="col-lg-2 control-label" style="padding-right: 0">Cover type</label>
+        <div class="col-lg-4">
+         <!--  <select class="form-control" ng-model="$ctrl.quote.newClient.coverInput" id="select" required focus>
+            <option value=""></option>
+            <option>Building Industry</option>
+          </select> -->
+          <select class="form-control" id="select" ng-model="$ctrl.quote.newClient.coverInput" ng-options="coverTypeObj.description for coverTypeObj in coverTypes track by coverTypeObj.type">
+          </select>
+        </div>
+        <label for="policyPremiumDate" class="col-lg-2 control-label" style="padding-right: 0">Policy renewal date</label>
+       <div class="col-lg-4">
+     <input  class="form-control" type="datetime" date-time auto-close="true" view="date" min-date="{{today}}" min-view="date" maxlength="10" format="dd/MM/yyyy" ng-model="$ctrl.quote.newClient.policyPremiumDateInput" placeholder="Policy renewal date" required="true">
+       </div>
+      </div>
+      <div class="form-group">
+            <label for="isRefundable" class="col-lg-2 control-label" style="padding-right: 0">Refundable</label>
+            <div class="col-lg-4">
+              <select class="form-control" ng-model="$ctrl.quote.newClient.isRefundable" id="select" required focus>
+                <option value=""></option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div>
+            <label for="isRefundable" class="col-lg-2 control-label" style="padding-right: 0">Renewal</label>
+            <div class="col-lg-4">
+              <select class="form-control" ng-model="$ctrl.quote.newClient.isRenewal" id="select" required focus>
+                <option value=""></option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </div> 
+       </div>  
+      
+      <div class="form-group">
+      <div class="col-lg-1 col-lg-offset-11">
+        <button type="add" class="btn btn-primary btn-md" ng-click="$ctrl.addPolicyToTable()" ng-disabled="quickQuoteForm.$invalid" style="float: right;">Add</button>
+      </div>  
+      </div>  
+      <div class="form-group">
+      
+      <div ui-grid="policyGridOptions" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection ui-grid-exporter ui-grid-auto-resize></div>
+      </div>
+
+      <div class="form-group" style="float: right;">
+      <label for="totalPremiumValue" maxlength="8" class="col-lg-6 control-label" style="padding-right: 0">Total premium (&pound;)</label>
+        <div class="col-lg-6">
+          <input class="form-control text-right" ng-model="$ctrl.quote.newClient.totalPremium" type="text" focus style="float: right;"  ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" readonly>
+        </div> 
+      </div> 
+   </fieldset>
+  </form>
+  </div>
+   <div class="row">
+      <div class="col-lg-2">
+              <button type="submit" class="btn btn-primary btn-back" ng-click="$ctrl.returnToHomePage()">Return to Homepage</button>
+      </div>
+      <div class="col-lg-2 col-lg-offset-8">
+              <button type="reset" class="btn btn-default btn-back" ng-click="$ctrl.clear()">Clear</button>
+              <button type="next" class="btn btn-primary right-button" ng-click="$ctrl.proceedToCreditAgreementDetails()" ng-disabled="!$ctrl.isPremiumEntered">Next</button>
+      </div>
+  </div> 
+  <br>
+  </div>
+  </div>
+  </div>
+ </div> 
+ </div>  
+
+<!-- Quote Calculation Section Below -->
+<div ng-show="$ctrl.isCreditAgreementDetails">
+ <div class="row margin-rows">
+     <div class="col-lg-12">
+     <span class="arialBold">
+     <span class="lightBlueFont">{{$ctrl.navHeader1}} > {{$ctrl.navHeader2}} </span> > {{$ctrl.navHeader3}} > {{$ctrl.navHeader4}} > {{$ctrl.navHeader5}}
+     </span>
+    </div>
+ </div> 
+ <br>
+ <div class="row margin-rows"> 
+    <div class="col-lg-12">  
+      <div class="jumbotron">
+        <form name="creditAgreementForm" class="form-horizontal" id="creditForm">
+          <fieldset>
+            <div class="form-group">
+                <label for="premiumAmount" class="col-lg-4 col-lg-offset-2 control-label">Total premium (&pound;)</label>
+                <div class="col-lg-2">
+                  <input class="form-control text-right" ng-model="$ctrl.quote.totalPremium" ng-disabled="true" placeholder="Total premium amount" type="text" required focus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="deposit" class="col-lg-4 col-lg-offset-2 control-label"><i>Less deposit</i> (&pound;)</label>
+                <div class="col-lg-2">
+                  <input class="form-control text-right" maxlength="7" ng-model="$ctrl.quote.deposit" placeholder="Enter Deposit" type="text" ng-change="$ctrl.calculatePremium();" focus>
+                </div>
+            </div>
+            <div class="form-group" ng-show="false">
+                <label for="totalAmountToFinance" class="col-lg-4 col-lg-offset-2 control-label">Total amount to finance (&pound;)</label>
+                <div class="col-lg-2">
+                  <input class="form-control text-right" ng-model="$ctrl.getFinanceAmount()" ng-disabled="true" placeholder="Amount to finance" type="number" required focus>
+                </div>
+            </div>
+            <div class="form-group" ng-show="false">
+                <label for="facilityFee" class="col-lg-4 col-lg-offset-2  control-label">Facility Fee (&pound;)</label>
+                <div class="col-lg-2">
+                  <input class="form-control text-right" ng-model="$ctrl.quote.facilityFee" ng-disabled="true" placeholder="Facility Fee" type="text" required focus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="amountToRepay" class="col-lg-4 col-lg-offset-2  control-label">Balance of premium to be financed (&pound;)</label>
+                <div class="col-lg-2">
+                  <input class="form-control text-right" ng-model="$ctrl.getAmountToRepay()" ng-disabled="true" type="text" required focus>
+                </div>
+            </div>
+          </fieldset>
+          </form>
+        </div>
+    </div>
+  </div>
+ <br><br>
+ <div class="row margin-rows"> 
+  <div class="col-lg-12">  
+   <div class="jumbotron">
+                          <div class="row">
+                                    <div class="col-lg-8 margin-left">
+                                       <strong>Balance of premium to be financed</strong>
+                                    </div>   
+                          </div>
+                          <br>
+                          <div class="row">
+                                      <div class="col-lg-1 margin-rows nopadding text-right">
+                                        <h4 class="margin-rows">&pound;<h4>
+                                      </div>
+                                      <div class="col-lg-2 margin-rows nopadding">
+                                       <input type="text" class="form-control text-right" ng-model="$ctrl.quote.amountToRepay"  ng-pattern="/^[0-9]+(\.[0-9]{1,2})?$/" step="0.01" ng-disabled="true"></input>
+                                      </div>
+                                      <div class="col-lg-2 col-lg-offset-5">
+                                        <button type="submit" class="btn btn-default btn-back" ng-click="$ctrl.applyCustomRate()">Apply custom rate</button>
+                                      </div>
+                          </div>
+                          <div class="row"><br><div>
+                          <div class="row">
+                                      <div class="col-lg-2">
+                                      </div>
+                                      <div class="col-lg-2 text-center">
+                                        <strong>Interest rate </strong>
+                                      </div>
+                                      <div class="col-lg-2 text-center">
+                                        <strong>Estimated repayment </strong>
+                                      </div>
+                                      <div class="col-lg-2 text-center">
+                                        <strong>Total</strong>
+                                      </div>
+                                      <div class="col-lg-2 text-left">
+                                        <strong>Total amount</strong>
+                                      </div>
+                                      <div class="col-lg-1"> 
+                                      </div>
+                          </div>
+                          <div class="row">
+                                      <div class="col-lg-2">
+                                         <strong>Term</strong>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <strong>Net %</strong>
+                                      </div>
+                                      <div class="col-lg-1">
+                                        <strong>Gross %</strong>
+                                      </div>
+                                      <div class="col-lg-2 text-center">
+                                        <strong>per monthly instalment (&pound;)</strong>
+                                      </div>
+                                      <div class="col-lg-2 text-center">
+                                        &nbsp;&nbsp;<strong>interest payable (&pound;)</strong>
+                                      </div>
+                                       <div class="col-lg-1 text-center">
+                                        <strong>payable(&pound;)</strong>
+                                      </div>
+                                      <div class="col-lg-1 text-center">
+                                        <strong>APR (%)</strong>
+                                      </div>
+                                      <div class="col-lg-1 text-center">
+                                        <strong>PAR (%)</strong>
+                                      </div>
+                          </div>
+                          <div class="row" ng-repeat="termRecords in $ctrl.quote.financeOption">
+                                      <div class="col-lg-2" style="padding-top:.55%" ng-class="{'white-bg': !$ctrl.is{{termRecords.rateReference}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                         {{termRecords.term}} Monthly Instalments
+                                      </div>
+                                      <div class="col-lg-1 text-right pad-sm" style="padding-top:.55%" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                        {{termRecords.net}}
+                                      </div>
+                                      <div class="col-lg-1" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}}MonthsSelected,'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                        <input type="text" class="form-control input-sm text-right pad-sm" ng-model="termRecords.gross" ng-change="$ctrl.calculatePremium()"></input>
+                                      </div>
+                                      <div class="col-lg-2 text-center" style="padding-top:.8%" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                         {{termRecords.monthlyPremiumAmount}}
+                                      </div>
+                                      <div class="col-lg-2 text-center" style="padding-top:.8%" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                        {{termRecords.totalInterestPayable}}
+                                      </div>
+                                      <div class="col-lg-1 text-center" style="padding-top:.8%" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                        {{termRecords.totalAmountToRepay}} 
+                                        </div>
+                                      <div class="col-lg-1 text-center" style="padding-top:.8%" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                        {{termRecords.equivalentAPR}} 
+                                      </div>
+                                       <div class="col-lg-1 text-center" style="padding-top:.8%" ng-class="{'white-bg': !$ctrl.is{{termRecords.term}},'grey-bg': $ctrl.is{{termRecords.rateReference}}}">
+                                        {{termRecords.equivalentPAR}} 
+                                      </div>
+                                      <div class="col-lg-1" style="padding-top:.3%">
+                                         <button type="select" class="btn btn-primary btn-sm" ng-click="$ctrl.selectQuote(termRecords.rateReference)">Select</button>
+                                      </div>
+                                     
+                          </div>
+                         
+                      </div>
+                </div>
+          </div>
+ </div>  
+ </div> 
+ <div class="row margin-rows"> 
+    <div class="col-lg-12">  
+      <div class="jumbotron">
+            <div class="text-center">
+              <strong>A facility fee of £{{$ctrl.quote.facilityFee}} will be added to the first instalment collection</strong>
+            </div>
+      </div>
+    </div>
+</div>       
+<!-- Submit Buttons -->
+
+<div class="row margin-rows">
+              <div class="col-lg-1">
+                      <button type="submit" class="btn btn-primary btn-back" ng-click="$ctrl.returnToPolicyDetails()">Back</button>
+              </div>
+              <div class="col-lg-2 col-lg-offset-8">
+                      <button type="next" class="btn btn-primary" ng-click="$ctrl.openQuoteSummary()">Generate quote summary</button>
+              </div>
+              <div class="col-lg-1">
+                      <button form="creditForm" type="next" class="btn btn-primary right-button" ng-click="creditAgreementForm.$valid && $ctrl.proceedToCustomerDetails()" ng-disabled="!$ctrl.isQuoteSelected">Next</button>
+              </div>
+          </div> 
+ </div>
+  
+
+<!-- Compliance Section Below -->
+<div class="row"  ng-show="false"> 
+<div class="col-lg-12">
+<div class="panel-group" id="accordionClientDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" ng-click="$ctrl.isComplianceDetailsNew = !$ctrl.isComplianceDetailsNew">
+          Documentation
+        </a><i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in" ng-show="$ctrl.isComplianceDetailsNew">
+      <div class="panel-body">
+              <div class="jumbotron">
+              <form name="complianceDetailsForm" class="form-horizontal">
+                <fieldset>
+                 <div class="form-group">
+                   <div class="col-lg-10">
+                      Documentation for customer review.
+                    </div>
+                 </div>
+                <div class="form-group">  
+                    <div class="col-lg-4">
+                      <a class="anchorblue" ng-click="$ctrl.openCreditAgreementExplanation()">Credit Agreement Explanations</a>
+                    </div>
+                    <div class="col-lg-4"></div>
+                   
+                   <!--  <div class="col-lg-1 col-lg-offset-1">
+                      <input class="form-control" ng-model="$ctrl.quote.compliance.creditExplainedNo"  type="checkbox" required focus>
+                    </div> -->
+                    
+                  </div>
+                  <div class="form-group">
+                     <div class="col-lg-4">
+                      <a class="anchorblue" ng-click="$ctrl.openRACADocument()">Running Account Credit Agreement(RACA)</a>
+                     </div>
+                     <div class="col-lg-4"></div>
+                   
+                  <!--   <div class="col-lg-1 col-lg-offset-1">
+                      <input class="form-control" ng-model="$ctrl.quote.compliance.racaShownNo"  type="checkbox" required focus>
+                    </div> -->
+                   
+                  </div>
+                   <div class="form-group">
+                     <div class="col-lg-8">
+                      <a class="anchorblue" ng-click="$ctrl.openSECCIDocument()">Standard European Consumer Credit Information(SECCI)</a>
+                    </div>
+                    <div class="col-lg-4"></div>
+                   
+                <!--     <div class="col-lg-1 col-lg-offset-1">
+                      <input class="form-control" ng-model="$ctrl.quote.compliance.secciShownNo"  type="checkbox" required focus>
+                    </div> -->
+                    
+                  </div>
+                  </fieldset>
+              </form>
+              </div>
+            </div>
+      </div>
+    </div>
+    </div>
+</div>
+<div class="col-lg-1">
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+
+
+

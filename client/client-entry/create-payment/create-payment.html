@@ -1,0 +1,140 @@
+
+<nav id="onboard" class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header margin-rows">
+      <span class="navbar-brand arialBold">{{$ctrl.navHeader}}</span>
+      <span class="navbar-brand arialBold">{{$root.userType}}</span>
+    </div>
+    <div class="collapse navbar-collapse" collapse="false">
+      <ul class="nav navbar-nav navbar-right">
+        
+        <li><a class="arialBold" href="" ng-click="$ctrl.logout()">Log out</a>
+          <!-- <ul class="dropdown-menu">
+             <li><a href="" ng-click="$ctrl.changeState('dashboard')">Dashboard</a></li>
+            <li><a href="" ng-click="$ctrl.changeState('newloan')">Create New Loan</a></li>
+            <li><a href="" ng-click="$ctrl.logout()">Logout</a></li>
+          </ul> -->
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+ <div class="row margin-rows" ng-show="$ctrl.isPaymentDetails"> 
+     <div class="col-lg-12">
+     <span class="lightBlueFont arialBold">{{$ctrl.navHeader1}}   > {{$ctrl.navHeader2}} </span>
+    </div> 
+ </div>
+ <div class="row margin-rows" ng-show="$ctrl.isPaymentDetails"> 
+     <div class="col-lg-12">   
+     <div class="jumbotron">
+         <div class="row">
+                            <form name="customerForm" class="form-horizontal" novalidate>  
+                            <fieldset>
+                             <div class="form-group">
+                                <h6 class="col-lg-4 col-lg-offset-2 text-right label-flatly"><strong>Enter total amount for payment (&pound;)</strong></h6>
+                                <div class="col-lg-3">
+                                  <input class="form-control text-right" ng-model="$ctrl.quote.newClient.paymentAmount"  type="text" required focus>
+                                </div>
+                              </div>
+                              <!-- <div class="form-group">
+                                <div class="col-lg-2 col-lg-offset-8">
+                                  <button type="submit" class="btn btn-primary">Credit/debit card</button>
+                                  </div>
+                                 <div class="col-lg-2">  
+                                  <button type="submit" class="btn btn-primary">Bank transfer</button>
+                                </div>
+                              </div> -->
+                              <div class="form-group lg-row" style="padding-top:10px">
+                                            <span class="col-lg-4 col-lg-offset-2 text-right label-flatly" style="padding-top:30px;"><strong>Select payment options available to customer:</strong>
+                                            </span>
+
+                                            <div class="row sm-row" style="padding:0" > 
+                                                  <h6 style="padding-right:10px" class="col-lg-2 label-flatly"><strong>Credit/debit card</strong></h6>
+                                                  <div class="col-lg-2 text-left">
+                                                    <div class="col-lg-1 col-lg-sm-1 text-left" ng-click="$ctrl.isCard=!$ctrl.isCard">
+                                                    <div class="check-rect text-left">
+                                                       <img id="logo-main" class="img text-left" ng-show="$ctrl.isCard" src="/images/checkBoxTick.png">
+                                                    </div>
+                                                   </div> 
+                                               </div>   
+                                             </div>
+                                             <div class="row sm-row" style="padding:0" >
+                                              <h6 style="padding-right:10px"  class="col-lg-2 col-lg-offset-6 label-flatly"><strong>Bank transfer</strong></h6>
+                                              <div class="col-lg-2 text-left">
+                                                <div class="col-lg-1 col-lg-sm-1 text-left" ng-click="$ctrl.isBankTransfer=!$ctrl.isBankTransfer">
+                                                <!-- <input class="white" type="checkbox" ng-model="$ctrl.isConsentChecked"/> -->
+                                                <div class="check-rect text-left">
+                                                   <img id="logo-main" class="img text-left" ng-show="$ctrl.isBankTransfer" src="/images/checkBoxTick.png">
+                                                </div>
+                                              </div> 
+                                              </div>
+                                              </div>
+                              
+                              </div>
+                              </fieldset>
+                              </form>
+          </div>
+    </div>
+  </div>
+  </div>
+
+   <div class="row margin-rows" ng-show="$ctrl.isPaymentDetails"> 
+                       <div class="col-lg-2">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.back()">Back</button>
+                        </div>
+
+                        <!-- <div class="col-lg-1 col-lg-offset-7">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.reset()">Clear</button>
+                        </div> -->
+                       
+                       <!--  <div class="col-lg-2 col-lg-offset-2">
+                                <button type="submit" class="btn btn-primary" ng-click="$ctrl.returnToHomePage()">Save Customer Record</button>
+                        </div> -->
+                        <div class="col-lg-2 col-lg-offset-8">
+                                <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.createPaymentRequest()">Send full payment request</button>
+                        </div>
+   </div>
+
+
+ <!-- Customer Section Below -->
+<div class="row margin-rows" ng-show="$ctrl.isCustomerDetails"> 
+     <div class="col-lg-12">
+     <span class="arialBold">
+     <span class="lightBlueFont">{{$ctrl.navHeader1}}  </span> > {{$ctrl.navHeader2}}
+     </span>
+    </div>
+ </div>
+ <!--  <div class="jumbotron">
+       To progress this quote you need to search for an existing customer or add new customer
+  </div> -->
+ <div ng-show="$ctrl.isCustomerDetails"> 
+ <div ng-show="!$root.isSearchReturned">
+      <search-client></search-client>
+ </div>
+ <div class="text-center" ng-show="!$root.isSearchReturned">
+     <span class="arialBold">or</span>
+ </div>
+  <div ng-show="!$ctrl.isPaymentDetails">
+     <br>
+      <create-customer></create-customer>
+  </div>    
+
+  <div class="row margin-rows" ng-show="$root.isNotDirectView">
+                        <div class="col-lg-2">
+                                <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.returnToHomePage()">Return to Homepage</button>
+                        </div>
+                        <div class="col-lg-2 col-lg-offset-8">
+                                 <button type="reset" class="btn btn-primary btn-back" ng-click="$ctrl.reset()">Clear</button>
+                                <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.proceedToPaymentDetails()">Next</button>
+                        </div>
+
+      
+  </div>
+  </div>
+  </div>
+
+
+  
+
+

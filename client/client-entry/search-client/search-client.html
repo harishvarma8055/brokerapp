@@ -1,0 +1,444 @@
+
+<nav id="onboard" class="navbar navbar-default" ng-show="!$root.isNotDirectView">
+  <div class="container-fluid">
+    <div class="navbar-header margin-rows">
+      <span class="navbar-brand arialBold">{{$ctrl.navHeader}}</span>
+      <span class="navbar-brand arialBold">{{$root.userType}}</span>
+    </div>
+    <div class="collapse navbar-collapse" collapse="false">
+      <ul class="nav navbar-nav navbar-right">
+         
+        <li class="dropdown">
+          <a href="" class="arialBold" ng-click="$ctrl.logout()">Log out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- <div class="container-fluid"> -->
+<div class="row margin-rows">
+<div class="col-lg-12">
+<div class="jumbotron" ng-show="$ctrl.isSearchCustomer">
+<form name="searchClientForm" class="form-horizontal">
+  <fieldset>
+   <div class="form-group">
+      <label for="customerName" class="col-lg-3 col-lg-offset-2 control-label">Search by</label>
+      <div class="col-lg-4">
+         <select class="form-control" id="select" ng-model="$ctrl.newClient.searchBy" ng-change="$ctrl.updateFields();">
+            <option value="Customer Name/Company Name" >Customer Name/Company Name</option>
+            <!-- <option value="Address" >Address</option> -->
+            <option value="Quote Ref" >Quote Ref</option>
+<!--             <option value="Finance Agreement Ref" >Finance Agreement Ref</option>
+ -->            
+            <option value="Mandate" >Mandate</option>
+            <option value="Sort Code/Account Number" >Sort Code/Account Number</option>
+            <option value="Post Code" >Post Code</option>
+          </select>
+      </div>
+    </div> 
+    <div class="form-group" ng-show="!$ctrl.accountSortCodeCheck">
+      <div class="col-lg-4 col-lg-offset-5">
+        <input class="form-control" ng-model="$ctrl.newClient.customerName" placeholder="Enter {{$ctrl.newClient.searchBy}}" type="text" focus>
+      </div>
+    </div>
+    <div class="form-group" ng-show="$ctrl.accountSortCodeCheck">
+        <label for="sortCode" class="col-lg-2 control-label">Sort Code</label>
+        <div class="col-lg-1">
+          <input class="form-control" ng-model="$ctrl.newClient.sortCode1" type="text" maxlength="2">
+        </div>
+       
+        <div class="col-lg-1">
+          <input class="form-control" ng-model="$ctrl.newClient.sortCode2" type="text" maxlength="2" >
+        </div>
+        <div class="col-lg-1">
+          <input class="form-control" ng-model="$ctrl.newClient.sortCode3" type="text" maxlength="2" >
+        </div>
+        <label for="accountNumber" class="col-lg-2 control-label">Account Number</label>
+        <div class="col-lg-5">
+          <input class="form-control" ng-model="$ctrl.newClient.accountNumber" placeholder="Enter Account Number" type="text">
+        </div>
+      </div>    
+    </fieldset>
+     <div class="row" ng-hide="!$ctrl.isCustomerDetails && !$ctrl.isCustomerSelected">
+      <div class="col-lg-2 col-lg-offset-7">
+        <button type="reset" class="btn btn-default btn-back">Reset</button>
+        <button type="next" class="btn btn-primary right-button" ng-click="$ctrl.searchClient()">Search</button>
+      </div>
+    </div>
+    <div class="row" ng-hide="!$root.showSearch">
+      <div class="col-lg-2 col-lg-offset-7">
+        <button type="reset" class="btn btn-default btn-back">Reset</button>
+        <button type="next" class="btn btn-primary right-button" ng-click="$ctrl.searchClient()">Search</button>
+      </div>
+    </div>
+
+    </div>
+</form>
+</div>
+
+
+</div>
+
+<div class="row margin-rows">
+<div class="col-lg-12">
+<div class="jumbotron" ng-show="$ctrl.isCustomerDetails">
+    <form name="searchResultForm" class="form-horizontal">
+      <legend>Select a customer below to view their details</legend>
+      <div>
+         <div ui-grid="instanceGridOption" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection  ui-grid-exporter ui-grid-auto-resize>
+        </div>                                                                    
+      </div>
+    </form>
+ </div>   
+ </div>
+ </div>   
+
+<form name="policyForm" class="form-horizontal" ng-show="$ctrl.isPremiumDetails">
+  <legend>Quote</legend>
+</form>
+</div>
+
+<!-- <div class="container" ng-show="false">
+<div class="container">
+<div class="col-lg-2"><button type="submit" class="btn btn-primary" ng-click="$ctrl.searchAgain()">Search Again</button></div>
+<div class="col-lg-3"></div>
+<div class="col-lg-2"></div>
+
+<div ng-show="$ctrl.hide">
+  <div class="col-lg-2"><button type="submit" class="btn btn-primary" ng-click="$ctrl.newCustomerQuote()">New Customer Quote</button>
+  </div>
+  <div class="col-lg-2"><button type="submit" class="btn btn-primary" ng-click="$ctrl.newCustomerLoan()">New Customer Finance Agreement</button></div>
+  </div>
+</div>
+</div>
+</div> -->
+
+<div class="rows margin-rows" style="margin-bottom: 0">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0" ng-show="$ctrl.isCustomerSelected">
+            <div class="row">
+            <div class="col-lg-12 text-center dark-blue">
+               <h3 class="ariaNormal"><strong>{{$ctrl.selectedCustomer.customerName}}</strong></h3>
+            </div>   
+            </div>
+            <div class="row">
+             <div class="col-lg-7">
+              <span class="arialNormal dark-blue"><strong>Client address:</strong></span>
+              <span class="arialNormal">{{$ctrl.selectedCustomer.address.addressLine1}}
+              </span> 
+             </div> 
+             <div class="col-lg-5">
+              <span class="arialNormal dark-blue"><strong>Mobile number:</strong></span>
+              <span class="arialNormal">{{$ctrl.selectedCustomer.customerMobile}}
+              </span> 
+             </div> 
+            </div>
+             <div class="row"> 
+              <div class="col-lg-7">
+               <span class="arialNormal pad-text">&nbsp;{{$ctrl.selectedCustomer.address.addressLine2}}</span> 
+              </div>  
+            </div>
+             <div class="row"> 
+              <div class="col-lg-7">
+              <span class="arialNormal pad-text">&nbsp;{{$ctrl.selectedCustomer.address.postcode}}</span>
+              </div> 
+              <div class="col-lg-5">
+              <span class="arialNormal dark-blue"><strong>Phone number:</strong></span>
+              <span class="arialNormal">{{$ctrl.selectedCustomer.customerPhone}}
+              </span> 
+             </div>  
+            </div>
+            <br>
+       
+            <div class="row">
+              <div class="col-lg-7">
+                <span class="arialNormal dark-blue"><strong>Business type:</strong></span>
+                <span class="arialNormal">{{$ctrl.selectedCustomer.natureOfBusiness.description}}</span>
+              </div>
+              <div class="col-lg-5">
+                <span class="arialNormal dark-blue"><strong>Email address:</strong></span>
+                <span class="arialNormal">{{$ctrl.selectedCustomer.customerEmail}}</span>
+              </div>
+            </div>
+             <div class="row">
+              <div class="col-lg-7">
+                <span class="arialNormal dark-blue"><strong>Trader Type:</strong></span>
+                <span class="arialNormal pad-sm">{{$ctrl.selectedCustomer.traderType.description}}</span>
+              </div>
+            </div>
+        </div>
+    </div>                                                         
+   </div>
+   <div class="row margin-rows" ng-show="$ctrl.isCustomerSelected">
+      <div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.editCustomer()">Edit customer details</button>
+     </div>   
+  </div>
+  <div ng-show="$ctrl.isCustomerSelected">
+    <br> 
+    </div>  
+</div> 
+
+<div class="row margin-rows" ng-show="$ctrl.isCustomerSelected">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0" >
+ <h4>Quotes</h4>
+ <br>
+ <div class="row">
+   <div class="col-lg-12">
+    <table class="table">
+    <thead>
+      <tr class="dark-blue">
+        <th>Quote Reference</th>
+        <th>Total Amount Payable</th>
+        <th>Date Created</th>
+        <th>Created By</th>
+        <th>Expires</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-show="($ctrl.selectedCustomer.transactions | filter:{'transactionType':'Quote'}).length == 0">
+        <td col-span=3>No valid quotes found</td>
+      </tr>
+      <tr ng-repeat="quote in $ctrl.selectedCustomer.transactions  | filter:{'transactionType':'Quote'}:true">
+        <td><a class="anchorblue" ng-click="$ctrl.proceedToBankDetails()">{{quote.transactionRef}}</a></td>
+        <td>{{quote.financeDetails.totalPremium}}</td>
+        <td>{{quote.createdTime | date : "dd-MMM-yyyy"}}</td>
+        <td>{{quote.createdBy}}</td>
+        <td>{{expiredDate | date : "dd-MMM-yyyy"}}</td>
+      </tr>
+      <!-- <tr>
+        <td><a class="anchorblue">14759</a></td>
+        <td>&nbsp;&nbsp;&nbsp;£142.00</td>
+        <td>05-Sept-2016</td>
+        <td>Jane Smith</td>
+        <td>05-Sept-2016</td>
+      </tr> -->
+    </tbody>
+  </table>
+  </div>
+</div>
+</div>
+</div>
+
+<div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.createQuote()">Create new quote</button>
+</div>  
+</div>
+<div ng-show="$ctrl.isCustomerSelected">
+<br> 
+</div>
+<!-- <br>
+<div class="col-lg-1">
+</div> 
+<div class="col-lg-10"> -->
+<!-- <div class="panel-group" id="accordionClientDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle anchorblue" ng-click="$ctrl.isquoteDetails = !$ctrl.isquoteDetails" ng-show="$ctrl.selectedCustomer.quotes.length > 0">
+             Existing Quotes - {{$ctrl.selectedCustomer.quotes.length}}
+        </a>
+        <a class="accordion-toggle" ng-click="$ctrl.isquoteDetails = !$ctrl.isquoteDetails" ng-show="!$ctrl.selectedCustomer.quotes || $ctrl.selectedCustomer.quotes.length == 0">
+             No Existing Quotes
+        </a>
+        <i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+      <div class="row"><div class="col-lg-3 col-lg-offset-9"><a class="anchorblue" ng-click="$ctrl.newQuote()">New Quote</a></div></div>
+    </div>
+
+    <div id="collapseOne" class="panel-collapse collapse in" ng-repeat="quote in $ctrl.selectedCustomer.quotes" ng-show="$ctrl.isLoanDetails">
+      <div class="panel-body">
+              <div class="jumbotron">
+                   <div class="row">
+                      <div class="col-lg-4">
+                         <h4><strong>Total Premium : </strong> {{quote.totalPremium}}</h4>
+                         <h4><strong>Period: </strong> {{quote.period}}</h4>
+                         <h4><strong>Rate: </strong>{{quote.rate}}</h4>
+                      </div>  
+                      <div class="col-lg-4 col-lg-offset-4">
+                         <h4><strong>Renewal Date : </strong> {{quote.renewalDate}}</h4>
+                      </div>  
+                      </div>
+            </div>
+      </div>
+    </div>
+    </div>
+</div> -->
+<!-- </div> -->
+</div>
+
+<div class="row margin-rows" ng-show="$ctrl.isCustomerSelected">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0" >
+ <h4>Credit Agreements</h4>
+ <br>
+ <div class="row">
+   <div class="col-lg-12">
+    <table class="table">
+    <thead>
+      <tr class="dark-blue">
+        <th>Agreement Reference</th>
+        <th>Premium</th>
+        <th>Date Created</th>
+        <th>Status</th>
+      <!--   <th>Branch</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-show="!$ctrl.selectedCustomer.loans || $ctrl.selectedCustomer.loans.length == 0">
+        <td col-span=3>No existing credit agreements found</td>
+      </tr>
+      <tr ng-repeat="creditAgreement in $ctrl.selectedCustomer.loans">
+        <td><a class="anchorblue">{{creditAgreement.loanRef}}</a></td>
+        <td>{{creditAgreement.totalPremium}}</td>
+        <td>{{creditAgreement.createdTime | date : "dd-MMM-yyyy"}}</td>
+        <td>{{creditAgreement.status}}</td>
+        <!-- <td>CS1000105257</td> -->
+      </tr>
+    <!--   <tr>
+        <td><a class="anchorblue">5004509226-02</a></td>
+        <td>&nbsp;&nbsp;&nbsp;£142.00</td>
+        <td>05-Sept-2016</td>
+        <td>Open</td>
+\      </tr> -->
+    </tbody>
+  </table>
+  </div>
+ </div>
+ </div>
+ </div>
+
+
+
+<!-- 
+<div class="col-lg-10">
+<div class="panel-group" id="accordionClientDetails">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+        <a class="accordion-toggle" ng-click="$ctrl.isLoanDetails = !$ctrl.isLoanDetails" ng-show="$ctrl.selectedCustomer.loans.length > 0">
+             Existing Finance Agreements - {{$ctrl.selectedCustomer.loans.length}}
+        </a>
+         <a class="accordion-toggle" ng-click="$ctrl.isLoanDetails = !$ctrl.isLoanDetails"  ng-show="!$ctrl.selectedCustomer.loans || $ctrl.selectedCustomer.loans.length == 0">
+            No Existing Agreements
+        </a>
+        <i class="indicator glyphicon glyphicon-chevron-down  pull-right"></i>
+      </h4>
+      <div class="row">
+         <div class="col-lg-2 col-lg-offset-5"><a ng-show="$ctrl.isLoanDetails" class="anchorblue" ng-click="$ctrl.openInIprompt()">Open in iPrompt</a>
+        </div>
+        <div class="col-lg-3 col-lg-offset-2"><a class="anchorblue" ng-click="$ctrl.newLoan()">New Finance Agreement</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="collapseOne" class="panel-collapse collapse in" ng-repeat="loan in $ctrl.selectedCustomer.loans" ng-show="$ctrl.isLoanDetails">
+      <div class="panel-body">
+              <div class="jumbotron">
+                   <div class="row">
+                      <div class="col-lg-4">
+                         <h4><strong>Total Premium : </strong> {{loan.totalPremium}}</h4>
+                         <h4><strong>Total Period: </strong> {{loan.period}}</h4>
+                         <h4><strong>Interest Rate: </strong>{{loan.rate}}</h4>
+                      </div>  
+                      <div class="col-lg-4 col-lg-offset-4">
+                         <h4><strong>Renewal Date : </strong> {{loan.renewalDate | date:'yyyy-MM-dd'}}</h4>
+                      </div>  
+                      </div>
+                      <div class="row">
+                      <div class="col-lg-2"><strong>Policies</strong></div>
+                      </div>
+                      <div ui-grid="{ data: loan.policies, columnDefs: [
+            { field: 'insurer',displayName: 'Insurer'},{ field: 'cover',displayName: 'Cover'},{ field: 'policyNumber',displayName: 'Policy Number'},{ field: 'premiummAmount',displayName: 'Premium Amount'}],minRowsToShow:loan.policies.length,enableVerticalScrollbar:0 }" ui-grid-resize-columns ui-grid-move-columns ui-grid-pinning ui-grid-selection  ui-grid-exporter ui-grid-auto-resize></div>
+            </div>
+      </div>
+    </div>
+    </div>
+</div>
+</div> -->
+<div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.viewIprompt()">Review agreements via i-prompt</button>
+</div> 
+</div>
+<div ng-show="$ctrl.isCustomerSelected">
+<br> 
+</div>
+
+
+<div class="row margin-rows" ng-show="$ctrl.isCustomerSelected">
+<div class="col-lg-12">
+<div id="customerDetails" class="jumbotron" style="margin-bottom: 0">
+ <h4>Full monthly payment transaction</h4>
+ <br>
+ <div class="row">
+   <div class="col-lg-12">
+    <table class="table">
+    <thead>
+      <tr class="dark-blue">
+        <th>Payment Reference</th>
+        <th>Payment</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Type</th>
+      <!--   <th>Branch</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-show="($ctrl.selectedCustomer.transactions | filter:{'transactionType':'PayInFull'}).length == 0">
+        <td col-span=3>No payment transactions found</td>
+      </tr>
+      <tr ng-repeat="payment in $ctrl.selectedCustomer.transactions  | filter:{'transactionType':'PayInFull'}:true">
+        <td><a class="anchorblue">{{payment.transactionRef}}</a></td>
+        <td>{{payment.transactionRef}}</td>
+        <td>{{payment.createdTime | date : "dd-MMM-yyyy"}}</td>
+        <td>{{payment.status}}</td>
+        <td>{{payment.paymentVia}}</td>
+        <td style="padding-top:0px"><button type="reset" ng-click="$ctrl.delete()"  class="btn btn-sm btn-primary btn-back">Delete</button></td>
+        <td style="padding-top:0px"><button type="reset" ng-click="$ctrl.refund()" class="btn btn-sm btn-primary btn-back">Refund</button></td>
+        <!-- <td>CS1000105257</td> -->
+      </tr>
+      <!-- <tr>
+        <td><a class="anchorblue">123457</a></td>
+        <td>&nbsp;&nbsp;&nbsp;£142.00</td>
+        <td>05-Sept-2016</td>
+        <td>Paid</td>
+        <td>BACS</td>
+        <td style="padding-top:0px"><button type="reset" class="btn btn-sm btn-primary btn-back" ng-click="$ctrl.delete()">Delete</button></td>
+      </tr> -->
+    </tbody>
+  </table>
+  </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="col-lg-2 col-lg-offset-10">
+              <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.createPayment()">Create a new payment request</button>
+</div>  
+</div>
+
+
+<div ng-show="$ctrl.isCustomerSelected">
+<br> 
+</div>
+</div>
+
+<div class="row margin-rows" ng-show="!$root.isNotDirectView">
+      <div class="col-lg-2">
+              <button type="submit" class="btn btn-primary btn-back" ng-click="$ctrl.returnToHomePage()">Return to homepage</button>
+      </div>
+      <div class="col-lg-2 col-lg-offset-8" ng-show="!$ctrl.isCustomerDetails && !$ctrl.isCustomerSelected">
+        <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.searchClient()">Search</button>
+      </div>
+       <div class="col-lg-2 col-lg-offset-8" ng-show="$ctrl.isCustomerSelected">
+        <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.searchAgain()">Return to search</button>
+      </div>
+      <div class="col-lg-2 col-lg-offset-8"  ng-show="$ctrl.isCustomerDetails">
+        <button type="submit" class="btn btn-primary right-button" ng-click="$ctrl.createNewCustomer()">Create new customer</button>
+      </div>
+</div>       
+
+
+

@@ -1,0 +1,65 @@
+<!-- <nav class="navbar navbar-default">
+  <div>
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <span class="navbar-brand">Sign In</span>
+    </div>
+  </div>
+</nav> -->
+<div id="login" class="login_image">
+<div class="container">
+<div class="row">
+    <br><br><br>
+    <div class="col-lg-4 col-lg-offset-4 whiteBg">
+      <figure id="logo" class="container-fluid">
+      <img id="logo-main" src="/logo/close_brothers_logo_u35.png" style="padding-top: 1em; padding-bottom: 1em; width: 300px;" alt="Home">
+      </figure>
+      <br>
+      <form class="form-signin">
+        <h4 class="form-signin-heading arial_default arial_default_size">Broker ID</h4>
+        <label for="inputUsername" class="sr-only">Broker Id</label>
+        <input type="username" id="inputUserName" class="form-control" ng-model="$ctrl.credentials.brokerid"  ng-focus="$ctrl.playAudio('User Name')" required>
+        <h4 class="form-signin-heading arial_default arial_default_size ">Username</h4>
+        <label for="inputUsername" class="sr-only">User Name</label>
+        <input type="username" id="inputUserName" class="form-control" ng-model="$ctrl.credentials.username" ng-focus="$ctrl.playAudio('User Name')" required>
+        <h4 class="form-signin-heading arial_default arial_default_size">Password</h4>
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input type="password" id="inputPassword" class="form-control" ng-model="$ctrl.credentials.password"  ng-focus="$ctrl.playAudio('Password')" required>
+       <!--  <div class="checkbox arial_default arial_default_size">
+          <label>
+            <input type="checkbox" value="remember-me" ng-focus="$ctrl.playAudio('Remember Me')"> Remember me
+          </label>
+        </div> -->
+        <div class="row">
+         <div class="col-lg-6 col-lg-offset-6">
+          <a class="anchorloginblue">Forgotten Password?</a>
+          </div>
+       </div> 
+       <div class="row">
+         <br>
+       </div>
+        <button id="submit" class="btn btn-primary btn-block" type="submit" ng-click="$ctrl.loginAPI()" aria-label="login"
+                     ng-disabled="$ctrl.loginForm.$invalid()">Login
+        </button>
+        <div class="row">
+         <br>
+       </div>
+         
+      </form>
+      </div>
+      <br><br><br>
+    </div>
+  </div>
+</div>      
+      
+      <div id = "alert_placeholder">
+        <div ng-show="$ctrl.error" ng-cloak class="alert alert-danger"><a class="close" data-dismiss="alert">×</a><span>{{ $ctrl.error }}</span></div>
+     </div>
+
+</div>
+

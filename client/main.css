@@ -1,0 +1,321 @@
+
+.BannerTitle2 {
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 24px;
+    color: #fff;
+    padding: 0;
+    letter-spacing: -1px;
+}
+.body {
+    background:blue;
+}
+.dark-blue{
+    color:#06038d
+}
+form.submitted.ng-invalid
+{
+    border:1px solid #f00;
+}
+
+.bs-wizard {margin-top: 40px;}
+
+/*Form Wizard*/
+.bs-wizard {border-bottom: solid 1px #e0e0e0; padding: 0 0 10px 10px;}
+.bs-wizard > .bs-wizard-step {padding: 0; position: relative;}
+.bs-wizard > .bs-wizard-step + .bs-wizard-step {}
+.bs-wizard > .bs-wizard-step .bs-wizard-stepnum {color: #595959; font-size: 16px; margin-bottom: 5px;}
+.bs-wizard > .bs-wizard-step .bs-wizard-info {color: #999; font-size: 14px;}
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot {position: absolute; width: 30px; height: 30px; display: block; background: #fbe8aa; top: 45px; left: 50%; margin-top: -15px; margin-left: -15px; border-radius: 50%;} 
+.bs-wizard > .bs-wizard-step > .bs-wizard-dot:after {content: ' '; width: 14px; height: 14px; background: #fbbd19; border-radius: 50px; position: absolute; top: 8px; left: 8px; } 
+.bs-wizard > .bs-wizard-step > .progress {position: relative; border-radius: 0px; height: 8px; box-shadow: none; margin: 20px 0;}
+.bs-wizard > .bs-wizard-step > .progress > .progress-bar {width:0px; box-shadow: none; background: #fbe8aa;}
+.bs-wizard > .bs-wizard-step.complete > .progress > .progress-bar {width:100%;}
+.bs-wizard > .bs-wizard-step.active > .progress > .progress-bar {width:50%;}
+.bs-wizard > .bs-wizard-step:first-child.active > .progress > .progress-bar {width:0%;}
+.bs-wizard > .bs-wizard-step:last-child.active > .progress > .progress-bar {width: 100%;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot {background-color: #f5f5f5;}
+.bs-wizard > .bs-wizard-step.disabled > .bs-wizard-dot:after {opacity: 0;}
+.bs-wizard > .bs-wizard-step:first-child  > .progress {left: 50%; width: 50%;}
+.bs-wizard > .bs-wizard-step:last-child  > .progress {width: 50%;}
+.bs-wizard > .bs-wizard-step.disabled a.bs-wizard-dot{ pointer-events: none; }
+
+.white-bg{
+    background:#ffffff !important;height:40px;
+}
+
+.grey-bg{
+    background:#eaeaea !important;height:40px;
+}
+.silverBg {
+  background-color: rgba(242, 242, 242, 1)!important;
+  border-color: #e6e6e6!important;
+}
+
+.servive-block {
+  padding: 20px 30px;
+  text-align: left;
+  margin-bottom: 40px;
+}
+.servive-block p,
+.servive-block h1 {
+  color: #fff;
+}
+
+.servive-block h1 a:hover{
+  text-decoration: none;
+}
+
+.servive-block-light,
+.servive-block-default {
+  background: #fafafa;
+  border: solid 1px #eee; 
+}
+.servive-block-default:hover {
+  box-shadow: 0 0 8px #eee;
+}
+.servive-block-light p,
+.servive-block-light h1,
+.servive-block-default p,
+.servive-block-default h1 {
+  color: #555;
+}
+.servive-block-default p,
+.servive-block-default h1 {
+  color: #555;
+}.servive-block-blue {
+  background: rgba(25, 167, 227, 1);
+}
+.anchorblue{color: rgba(25, 167, 227, 1) !important;}
+a:hover {
+ cursor:pointer;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    position: absolute;
+    visibility: hidden;
+    display: none;
+    background-color: rgba(22,22,22,0.5); /* complimenting your modal colors */
+}
+#container:target {
+    visibility: visible;
+    display: block;
+}
+.reveal-modal {
+    position: relative;
+    margin: 0 auto;
+    top: 25%;
+}
+.anchorloginblue{color: rgba(25, 167, 227, 1) !important;float: right;}
+a:hover {
+ cursor:pointer;
+}
+#logowording {
+font-family: 'Open Sans Regular', 'Open Sans';
+font-weight: 400;
+font-style: normal;
+font-size: 11px;
+color: #747678;
+}
+.arial_default {
+    font-family: 'Arial';
+    font-weight: 400;
+    font-style: normal;
+    font-size: 13px;
+    color: #333333;
+    line-height: normal;
+}
+.arial_default_size {
+    font-size: 16px;
+    color: rgb(30, 30, 30);
+}
+.login_image {
+    background-image: url('/images/login-image.jpg');
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:1920px;
+}
+#login {
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow-y:hidden;
+  overflow-x:hidden;
+  top:0;
+  left:0;
+  bottom:0;
+}
+.arialNormal {
+  font-family:'Arial Regular', 'Arial';font-weight:400;
+}
+.arialSmall {
+  font-family:'Arial Regular', 'Arial';font-weight:400;font-size:12px;
+}
+.arialBold {
+  font-family:'Arial Bold', 'Arial';font-weight:700;
+}
+.whiteBg {
+  background-color: #FFFFFF!important;
+  border-color: #FFFFFF!important;
+}
+.scroll-no {
+  overflow-y:hidden!important;
+}
+.btn-back {
+    background-color:#747678!important;
+    border-color:#747678!important;
+}
+.pad-sm
+{
+ padding-right: 5%!important;
+}
+.check-rect
+{
+    position: absolute;
+    left: 70%;
+    top: 0px;
+    width: 35px;
+    height: 35px;
+    background: inherit;
+    background-color: rgba(255, 255, 255, 1);
+    box-sizing: border-box;
+    border-width: 1px;
+    border-style: solid;
+    border-color: rgba(153, 153, 153, 1);
+    border-top-color: rgb(153, 153, 153);
+    border-right-color: rgb(153, 153, 153);
+    border-bottom-color: rgb(153, 153, 153);
+    border-left-color: rgb(153, 153, 153);
+    border-radius: 0px;
+    -moz-box-shadow: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding-right: 0px!important;
+}
+.img {
+    position: absolute;
+    left: 1px;
+    top: 0px;
+    width: 30px;
+    height: 32px;
+}
+.lightBlueBg {
+  background-color: #009fdf!important;
+  border-color: #009fdf!important;
+  float:left;
+  margin-left:3%;
+  margin-right: 3%;
+  margin-bottom: 4%;
+  width:27%;
+  height:130px;
+  color:#FFFFFF;
+  padding-left:3%;
+  padding-right:3%;
+  padding-top:0%;
+  padding-bottom:1%;
+  font-family:'Arial Regular', 'Arial';font-weight:400;
+}
+[ng-click],
+[data-ng-click],
+[x-ng-click] {
+    cursor: pointer;
+}
+.lightBlueFont {
+  color:#009fdf!important;
+}
+.nopadding {
+   padding: 0px !important;
+   margin: 0px !important;
+}
+.round-corner {
+  border-radius:10px  !important;
+}
+.vcenter {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    float: none !important;
+}
+.margin-rows {
+    margin-left: 1% !important;
+    margin-right: 1% !important;
+}
+.margin-left {
+    margin-left: 8% !important;
+}
+.right-button {
+    float: right !important;
+}
+.pad-text {
+    padding-left:16%;
+}
+.pad-sm {
+    padding-left:2.6%;
+}
+.input-xs {
+  width:12% !important;
+}
+.sort-code:before {
+    content: "-";
+    position: absolute;
+    left: -2%;
+    top: 8px;
+}
+.lg-row {
+  height:80px;
+}
+.sm-row {
+  height:40px;
+}
+.label-flatly {
+  font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;font-size: 15px;line-height: 1.42857143 !important;
+}
+.disabled {
+  cursor: not-allowed;
+}
+
+/*-------------- Updated CSS For Allignment & Responsive Start--------------*/
+.logo-left{ text-align:left; margin:1em 0;}
+.logo-right{ text-align:right; margin:1em 0;}
+.top-line{ border-top:#e4e4e4 solid 1px; padding:2em 0; margin:2em 1em 0; text-align: center; font-family:Arial, Helvetica, sans-serif;}
+.footer-logo{margin:1em 0 0!important;}
+.footer-logo img{ margin:1em 1em 0!important;}
+.inner-space{ padding:0 1em;}
+.bottom-space{ margin:0 0 1em 0;}
+.place-center{ text-align:center!important;}
+.place-center img{ width:100%!important; height:auto!important;}
+.dashboard-text-box h3{ margin-top:16px!important; font:normal 22px Arial, Helvetica, sans-serif; color:#FFFFFF;}
+.img-pad { padding-top:30%;}
+
+
+@media screen and (min-device-width: 768px) and (max-device-width: 1023px) { 
+.place-center img{ width:50%!important; height:auto!important; }
+.dashboard-text-box h3{ margin-top:10px!important; font-size:18px; text-align:center!important;}
+.img-pad { padding-top:10%;}
+.lightBlueBg { height:175px;}
+}
+
+@media screen and (min-device-width: 320px) and (max-device-width: 767px) { 
+    .logo-left{ text-align:center;}
+  .logo-right{ text-align:center;}
+  .full-width{ width:100%; text-align:center!important;}
+  .dashboard-text-box h3{ margin-top:10px!important; font-size:13px;}
+  .lightBlueBg { height:145px; padding: 0 2% 1%;}
+  .img-pad { padding-top:15%;}
+}
+
+@media  screen and (max-width: 1920px) and (min-width: 1401px) {
+  .pad-text {
+    padding-left:11%;
+}
+}
+@media  screen and (max-width: 1400px) and (min-width: 1024px) {
+  .pad-text {
+    padding-left:16%;
+}
+   
+}
+/*-------------- Updated CSS For Allignment & Responsive End--------------*/

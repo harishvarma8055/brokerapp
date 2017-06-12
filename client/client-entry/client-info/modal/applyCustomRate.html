@@ -1,0 +1,33 @@
+
+       <div class="modal-header">
+            <h4 class="modal-title">Apply Custom Rate</h4>
+        </div>
+        <div class="modal-body">
+         <form name="agencySelectionForm" class="form-horizontal">
+           <fieldset>
+            <div class="form-group">
+                <label for="premiumAmount" class="col-lg-4 col-lg-offset-2 control-label">Term(Monthly Instalments)</label>
+                <div class="col-lg-4">
+                  <input class="form-control text-right" ng-model="$ctrl.values.instalments" placeholder="Instalments" type="text" required focus>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="deposit" class="col-lg-4 col-lg-offset-2 control-label"><i>Net %</i></label>
+                <div class="col-lg-4">
+                  <input class="form-control text-right" maxlength="7" ng-model="$ctrl.values.baseRate" placeholder="Net" type="text" focus>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="amountToRepay" class="col-lg-4 col-lg-offset-2  control-label">Gross %</label>
+                <div class="col-lg-4">
+                  <input class="form-control text-right" ng-model="$ctrl.values.gross" type="text" placeholder="Gross" required focus>
+                </div>
+            </div>
+          </fieldset>
+         </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default btn-back" ng-click="$close($ctrl.values)">Apply</button>
+           
+        </div>

@@ -1,0 +1,6 @@
+.meteor/local/
+node_modules/
+.DS_Store
+settings-dev.json
+settings-stage.json
+manifest.yml

@@ -1,0 +1,28 @@
+
+       <div class="modal-header">
+            <h4 class="modal-title">Select Agency</h4>
+        </div>
+        <div class="modal-body">
+         <form name="agencySelectionForm" class="form-horizontal">
+            <div class="form-group">
+                  <label for="customerName" class="col-lg-5 control-label">Agency Id</label>
+                  <div class="col-lg-6 col-lg-offset-1">
+                     <select class="form-control" id="select" ng-model="selected.agencyId">
+                        <option ng-repeat="agencyId in agencyIds" value="{{agencyId}}" >{{agencyId}}</option>
+                      </select>
+                  </div>
+            </div> 
+
+              <div class="row">
+               <div class="col-lg-9 col-lg-offset-3">
+                  Selected:   
+                  <div ng-if="selected.agencyId == '543215'"> <b> CL - {{ selected.agencyId }}  - 5 Great Tower St, London EC3R 5BT</div></b>
+                  <div ng-if="selected.agencyId == '717162'"> <b> PL - {{ selected.agencyId }} - 1 Great Tower St, London EC3R 5BT</div></b>
+               </div>
+               </div>   
+         </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default btn-back" ng-click="$dismiss()">Cancel</button>
+            <button class="btn btn-primary" ng-click="$close(selected.agencyId)">Continue</button>
+        </div>

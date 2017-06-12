@@ -1,0 +1,1 @@
+TransactionDetails = new Mongo.Collection("transactiondetails");
